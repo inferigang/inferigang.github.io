@@ -14,14 +14,17 @@
     <meta property="og:image" content="{{ page.banner_path }}">
     <meta property="og:image:type" content="image/png">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ page.url }}">
+    <meta property="og:url" content="{{ site.url }}{{ page.url }}">
 
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="{{ page.url }}">
-    <meta name="twitter:creator" content="{{ page.author }}">
     <meta name="twitter:title" content="{{ page.title }}">
     <meta name="twitter:description" content="{{ page.description }}">
-    <meta name="twitter:image" content="{{ page.banner_path }}">
+    <meta name="twitter:image:src" content="{{ site.url }}{{ page.banner_path}}">
+    <meta name="twitter:creator" content="@{{ page.author }}">
+    <meta name="twitter:site" content="{{ site.url }}">
+    <meta name="twitter:url" content="{{ page.url }}">
+    <meta name="twitter:cta" content="NDRWRLDCMPTNG">
+
+    <meta name="description" content="{{ page.description }}">
   </head>
   <body>
     <div class="container">
