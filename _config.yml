@@ -1,0 +1,14 @@
+title: inferigang
+email: inferigang@protonmail.com
+description: Meet the underworld computing
+twitter_username: inferigang
+github_username: inferigang
+
+hdr_pages:
+  - index.md
+  - archive.md
+  - about.md
+
+permalink: /paper/:title
+
+footer: "Made by @inferigang"

@@ -1,0 +1,8 @@
+<div class="menu">
+  <ul>
+  {%- for path in site.hdr_pages -%}
+      {%- assign page = site.pages | where: "path", path | first -%}
+      <li><a href="{{ page.url | relative_url }}">{{ page.title | escape }}</a></li>
+  {%- endfor -%}
+  </ul>
+</div>
