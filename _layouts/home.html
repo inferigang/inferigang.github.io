@@ -9,8 +9,8 @@ layout: default
   {%- for post in site.posts -%}
   {%- assign format = "%d/%m/%Y" -%}
   <li>
-    <span class="post_info">[{{ post.date | date: format }}] <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></span>
-    <span class="post_author"><a href="{{ post.author_url }}" target="_blank" class="green">@{{ post.author }}</a></span></li>
+    <span class="post_info">{{ post.date | date: format }} <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></span>
+    <span class="post_author"><a href="{{ post.author_url }}" target="_blank" class="white white_link">@{{ post.author }}</a></span></li>
   {%- endfor -%}
 </ul>
 {%- endif -%}
