@@ -8,6 +8,7 @@
   --selection-background: #f5f5f5;
   --selection-text: #0b0b0b;
   --background-color: #06090d;
+	--background-color-alt: #141e2b;
   --text-color: var(--base-color);
   --placeholder-color: var(--base-color);
 
@@ -83,9 +84,20 @@ body {
   padding: 0px; 
 }
 
+blockquote p::before {
+	content: ">> ";
+	color: var(--code-green);
+}
+
+.language-plaintext {
+	background-color: var(--background-color-alt);
+	color: var(--code-green);
+}
+
 footer {
   border-top: var(--border);
   margin-top: 40px;
+	margin-bottom: 40px;
   padding-top: 15px;
   text-align: center;
 }
@@ -100,8 +112,13 @@ h1, h2, h3 {
   }
 }
 
-header {
-  margin-bottom: 40px;
+header { margin-bottom: 40px }
+
+img {
+	display: block;
+	max-width: 70%;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 mark {
