@@ -47,6 +47,13 @@ a {
   }
 }
 
+ul li { list-style-type: none; }
+ul li::before { content: "- "; color: var(--purple); }
+
+h1, h2, h3 {
+  margin-top: 30px;
+}
+
 h1::before, h2::before, h3::before {
   content: "# ";
   color: var(--red);
@@ -68,6 +75,8 @@ h1::before, h2::before, h3::before {
   color: red;
   font-weight: 800;
 }
+
+.nav ul li::before { content: ""; }
 
 .nav a::before {
   content: "⸸ ";
@@ -108,6 +117,8 @@ h1::before, h2::before, h3::before {
   margin-right: 10px;
   order: 2;
 }
+
+.explorer li::before { content: ""; }
 
 .wrap {
   width: var(--width);

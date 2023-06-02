@@ -8,5 +8,4 @@ image: /assets/img/c-obfuscation-techniques.png
 categories: c malware linux windows 
 ---
 
-# Introdução
-teste
+Working on...

@@ -4,4 +4,6 @@ permalink: /papers/
 title: Papers
 ---
 
-# Posts
+# Papers
+<br>
+{% include explorer.html %}
