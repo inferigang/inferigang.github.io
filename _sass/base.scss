@@ -129,7 +129,7 @@ h1::before, h2::before, h3::before {
 
 .art .title { font-size: var(--alt-font-size); }
 
-.categories { list-style-type: none; }
 .categories li {
   display: inline;
+  list-style-type: none;
 }
