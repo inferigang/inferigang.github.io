@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" type="text/css" href="{{ '/assets/main.css' | relative_url }}">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; img-src 'self'; font-src 'self' https://fonts.gstatic.com; connect-src 'self'; media-src 'self'; object-src 'self'; child-src 'self'; form-action 'none'; base-uri 'self'">
+    <meta http-equiv="X-XSS-Protection"  content="1;mode=block" always>
+    <meta http-equiv="Referrer-Policy" content="no-referrer, strict-origin-when-cross-origin">
+    <meta charset="utf-8">
+    {% seo %}
+  </head>
+</html>
+<body>
+  {% include nav.html %}
+  <main>
+    <div class="container">
+      {{ content }}
+    </div>
+  </main>
+  {% include footer.html %}
+</body>

@@ -1,0 +1,22 @@
+---
+layout: default
+---
+
+<div class="art mid">
+<pre>
+   ______   ______     ______   ______     ______    
+  /\  == \ /\  __ \   /\  == \ /\  ___\   /\  == \   
+  \ \  _-/ \ \  __ \  \ \  _-/ \ \  __\   \ \  __<   
+   \ \_\    \ \_\ \_\  \ \_\    \ \_____\  \ \_\ \_\ 
+    \/_/     \/_/\/_/   \/_/     \/_____/   \/_/ /_/ 
+                                                     
+</pre>
+<p><span class="title mark">{{ page.title }}</span> by <a href="{{ page.author_url }}">@{{ page.author }}</a></p>
+<ul class="categories">
+  {% for cat in page.categories %}
+  <li><a href="">{{ cat }}</a></li>
+  {% endfor %}
+</ul>
+</div>
+
+{{ content }}

@@ -1,0 +1,8 @@
+<div class="nav">
+  <ul>
+    {% for path in site.nav_pages %}
+    {% assign nav_page = site.pages | where: "path", path | first %}
+    <li><a href="{{ nav_page.url | relative }}">{{ nav_page.title }}</a></li>
+    {% endfor %}
+  </ul>
+</div>

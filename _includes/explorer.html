@@ -1,0 +1,9 @@
+<div class="explorer">
+  <ul>
+    {% for post in site.posts %}
+    <li>
+      <span class="post_info">{{ post.date | date: "%d/%m/%Y" }} <b></b><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></span>
+       <span class="post_author"><a href="{{ post.author_url }}" target="_blank" class="white white_link">@{{ post.author }}</a></span></li>
+    {% endfor %}
+  </ul>
+</div>

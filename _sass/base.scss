@@ -1,0 +1,124 @@
+@charset "utf-8";
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk");
+
+:root {
+  --black:  #08080d;
+  --white:  #e2e2e2;
+  --red:    #ed2538;
+  --green:  #2ded4d;
+  --blue:   #3e6ff7;
+  --purple: #9125ed;
+  --pink:   #ed257a;
+  --cyan:   #25edeb;
+  --orange: #ed7f25;
+
+  --bg-color: var(--black);
+  --base-color: var(--white);
+  --border: 1px solid grey;
+  --border-radius: 5px;
+  --link-color: var(--blue);
+  --mark-color: var(--orange);
+
+  --font-size: 17px;
+  --alt-font-size: 19px;
+
+  --width: 70%;
+  --max-width: 800px;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--base-color);
+  font-family: "Space Grotesk";
+  font-size: var(--font-size);
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+  &:hover {
+    color: var(--base-color);
+    background-color: var(--link-color);
+  }
+}
+
+h1::before, h2::before, h3::before {
+  content: "# ";
+  color: var(--red);
+}
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: var(--max-width);
+  width: var(--width);
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.mark { color: var(--mark-color); }
+
+.title::before {
+  content: "# ";
+  color: red;
+  font-weight: 800;
+}
+
+.nav a::before {
+  content: "⸸ ";
+  color: var(--bg-color);
+  &:hover {
+    color: var(--base-color);
+  }
+}
+
+.nav {
+  margin-top: 15px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.nav ul li {
+  display: inline;
+  list-style-type: none;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.mid { text-align: center; }
+
+.explorer li { display: flex }
+.explorer li .post_info { order: 1 }
+.explorer li .post_author { order: 3 }
+
+.explorer li::after {
+  background-image: radial-gradient(circle, currentcolor 1px, transparent 1.5px);
+  background-position: bottom;
+  background-size: 1ex 4.5px;
+  background-repeat: space no-repeat;
+  content: "";
+  flex-grow: 1;
+  height: 1em;
+  margin-left: 10px;
+  margin-right: 10px;
+  order: 2;
+}
+
+.wrap {
+  width: var(--width);
+  max-width: var(--max-width);
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.art .title { font-size: var(--alt-font-size); }
+
+.categories { list-style-type: none; }
+.categories li {
+  display: inline;
+}

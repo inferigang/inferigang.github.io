@@ -1,0 +1,45 @@
+title: inferigang
+email: underworld.comp@proton.me
+description: >- 
+  The inferigang project is made up of computer science and information security enthusiasts, mainly focused on sharing information and knowledge around the world. Our members share similar ideals such as the right to free knowledge, individual liberty and privacy. With the aim of highlighting these issues, we decided to start the blog to share ideas and knowledge.
+
+twitter:
+  username: inferigang
+  card: summary_large_image
+
+social:
+  name: inferigang
+  links:
+    - https://twitter.com/inferigang
+    - https://github.com/inferigang
+
+collections:
+  posts:
+    output: true
+    permalink: /paper/:title
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      author: inferigang
+      author_url: https://twitter.com/inferigang
+      description: Meet the underworld computing
+      image: /assets/img/sample.png
+      locale: en_US
+      categories: general
+      toc: false
+
+nav_pages:
+  - index.md
+  - papers.md
+  - resources.md
+  - about.md
+
+footer: N D R W R L D C M P T N G
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-toc
