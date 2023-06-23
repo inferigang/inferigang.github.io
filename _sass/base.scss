@@ -97,6 +97,7 @@ h1::before, h2::before, h3::before {
 }
 
 img {
+  position: absolute;
   display: block;
   margin-left: auto;
   margin-right: auto;
