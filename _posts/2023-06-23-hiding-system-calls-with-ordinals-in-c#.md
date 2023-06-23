@@ -59,10 +59,10 @@ As definições de funções deste código estão sendo chamadas em texto claro,
 <br>
 Existem diversas formas de se utilizar o DllImport, uma delas é com o
 uso de ordinals
-<br>
-- Um ordinal é um index que identifica uma função em uma DLL.
-- Podemos utilizá-lo para mudar os nomes das chamadas de API
-<br>
+<br><br>
+- Um ordinal é um index que identifica uma função em uma DLL.<br>
+- Podemos utilizá-lo para mudar os nomes das chamadas de API<br>
+<br><br>
 Ultilizando ordinals, podermos mudar a assinatura do nosso PE.
 <br>
 Primeiramente, vamos ultilizar um ultilitario chamado “PEview”, ele nos permite olhar a fundo a estrutura de um PE/DLL.
