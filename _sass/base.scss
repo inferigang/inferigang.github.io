@@ -92,6 +92,17 @@ h1::before, h2::before, h3::before {
   text-align: center;
 }
 
+code {
+  background-color: #252529;
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
 .nav ul li {
   display: inline;
   list-style-type: none;
