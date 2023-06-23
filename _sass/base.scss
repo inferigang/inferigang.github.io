@@ -92,7 +92,9 @@ h1::before, h2::before, h3::before {
   text-align: center;
 }
 
- .highlight pre { background-color: var(--highlight-bg-color); }
+code {   text-align: justify;
+  text-justify: inter-word; } 
+ .highlight pre { background-color: #282833; }
   .highlight .hll { background-color: var(--highlight-bg-color); }
   .highlight .c { color: #75715e; } /* Comment */
   .highlight .err { color: #960050; background-color: #1e0010; } /* Error */
