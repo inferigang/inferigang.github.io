@@ -2,7 +2,7 @@
 layout: post
 title:  "Hiding System Calls Using Ordinals in C#"
 author: sorahed
-author_url: //twitter.com/astreuzz
+author_url: //twitter.com/unkvolism
 description: "A little bit about how to use ordinals to hide system calls in C#"
 image: /assets/img/hiding-system-calls-with-ordinals-in-c#.png
 categories: c# windows 
