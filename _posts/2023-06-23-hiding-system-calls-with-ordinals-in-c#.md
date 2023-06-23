@@ -11,13 +11,13 @@ categories: c# windows
 
 # Using ordinals in C# to hide function calls
 
-É muito comum na area de redteam, ao fazer um teste de intrusão a uma rede interna, nos depararmos com soluções de anti-virus, as quais cada dia são investidos milhões de dólares para aprimorar suas táticas de detecção.
+É muito comum na area de redteam, ao fazer um teste de intrusão a uma rede interna, nos depararmos com soluções de anti-virus, as quais cada dia são investidos milhões de dólares para aprimorar suas táticas de detecção.<br><br>
 <br>
-Sabendo disso atacantes, também buscam sempre por novas táticas para evadir essas soluções como EDR/XDR e anti-virus no geral.
+Sabendo disso atacantes, também buscam sempre por novas táticas para evadir essas soluções como EDR/XDR e anti-virus no geral.<br><br>
 <br>
-E como uma breve introdução a esse tema de evasion, vou apresentar a vocês uma coisa muito legal, que pode ser feita para “obfuscar” a chamada direta de funções no seu código.
+E como uma breve introdução a esse tema de evasion, vou apresentar a vocês uma coisa muito legal, que pode ser feita para “obfuscar” a chamada direta de funções no seu código.<br><br>
 <br>
-A técnica que vou estar mostrando hoje, é muito interessante pois ela não é muito bem documentada, e também é facil de ser executada, e funciona muito bem contra os anti-virus.
+A técnica que vou estar mostrando hoje, é muito interessante pois ela não é muito bem documentada, e também é facil de ser executada, e funciona muito bem contra os anti-virus.<br><br>
 <br>
 ## Vamos lá !!!
 <br>
@@ -26,6 +26,7 @@ Primeiramente temos aqui, um código comum em C#.
 Este código basicamente exibe uma messageBox, utilizando a dll “user32.dll” do windows.
 Dentro dessa dll, se encontra a função que vamos utilizar, que é a messageBox.
 <br><br>
+
 ```
 using System;
 using System.Runtime.InteropServices;
@@ -50,6 +51,8 @@ namespace messageBox
     }
 }
 ```
+
+
 <br><br>
 O codigo acima funciona normalmente, você pode executa-lo em sua máquina sem nenhum problema de execução.
 <br>
@@ -111,11 +114,14 @@ namespace messageBox
     }
 }
 ```
+
+
 <br><br>
 Como o EntryPoint da função ja está previamente setado (#2154) o nome da função, já não se torna importante fazendo assim com que possamos ultilizar o nome que quisermos, no lugar do nome da função.
 <br>
-Fazendo assim, que quando nosso código for análisado por EDR’S ou qualquer outro anti-virus, que faça essa verificação das chamadas de funções, bypassemos tal, pois ele não vai mais encontrar o nome da função :)
-<br>
+Fazendo assim, que quando nosso código for análisado por EDR’S ou qualquer outro anti-virus, que faça essa
+verificação das chamadas de funções, bypassemos tal, pois ele não vai mais encontrar o nome da função :)
+<br><br><br>
 ![](/assets/img/2.png)
 <br>
 Obrigado por ler, espero que ajude !!!
