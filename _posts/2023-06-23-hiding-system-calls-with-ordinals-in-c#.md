@@ -27,7 +27,7 @@ Este código basicamente exibe uma messageBox, utilizando a dll “user32.dll”
 Dentro dessa dll, se encontra a função que vamos utilizar, que é a messageBox.
 <br><br>
 
-```
+```csharp
 using System;
 using System.Runtime.InteropServices;
 
@@ -90,7 +90,7 @@ Conseguimos ultilizar o EntryPoint, com um número ou com o própio nome da fun�
 - Porém aquele valor(index) foi convertido para decimal.
 <br><br>
 
-```
+```csharp
 
 using System;
 using System.Runtime.InteropServices;
@@ -127,4 +127,4 @@ verificação das chamadas de funções, bypassemos tal, pois ele não vai mais 
 <br>
 Obrigado por ler, espero que ajude !!!
 <br>
-`Sit scientia tua veritas, persevera ad inferi`
+Sit scientia tua veritas, persevera ad inferi
