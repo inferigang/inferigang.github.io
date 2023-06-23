@@ -1,3 +1,14 @@
+---
+layout: post
+title:  "Hiding System Calls Using Ordinals in C#"
+author: sorahed
+author_url: //twitter.com/astreuzz
+description: "A little bit about how to use ordinals to hide system calls in C#"
+image: /assets/img/hiding-system-calls-with-ordinals-in-c#.png
+categories: c# windows 
+---
+
+
 # Using ordinals in C# to hide function calls
 
 É muito comum na area de redteam, ao fazer um teste de intrusão a uma rede interna, nos depararmos com soluções de anti-virus, as quais cada dia são investidos milhões de dólares para aprimorar suas táticas de detecção.
