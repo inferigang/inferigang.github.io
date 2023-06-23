@@ -52,7 +52,6 @@ namespace messageBox
 }
 ```
 
-
 <br><br>
 O codigo acima funciona normalmente, você pode executa-lo em sua máquina sem nenhum problema de execução.
 <br>
@@ -90,7 +89,9 @@ Conseguimos ultilizar o EntryPoint, com um número ou com o própio nome da fun�
 - Dentro desse código setamos no como EntryPoint o valor da função MessageBox.
 - Porém aquele valor(index) foi convertido para decimal.
 <br><br>
+
 ```
+
 using System;
 using System.Runtime.InteropServices;
 
@@ -113,8 +114,8 @@ namespace messageBox
         }
     }
 }
-```
 
+```
 
 <br><br>
 Como o EntryPoint da função ja está previamente setado (#2154) o nome da função, já não se torna importante fazendo assim com que possamos ultilizar o nome que quisermos, no lugar do nome da função.
