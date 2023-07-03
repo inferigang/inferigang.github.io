@@ -1,18 +1,15 @@
-# Setup
 title: InferiGang
 url: https://inferi.zip
 paginate: 1
 baseurl: ""
 permalink: pretty
 
-# Gems
 plugins:
   - jekyll-gist
   - jekyll-paginate
   - jekyll-seo-tag
   - jekyll-toc
 
-# Optimize Jekyll
 exclude:
   - .editorconfig
   - .git
@@ -31,21 +28,15 @@ collections:
     output: true
     permalink: /paper/:title
 
-# Options
+paginate_path: "/page/:num"
 
-# Replace this value and uncomment to enable Google Analytics tracking
-# ga_analytics: UA-000000-0
-
-# Specify the author for blog posts
 author:
   name: inferigang
   url: https://twitter.com/inferigang
   email: underworld.comp@proton.me
 
-# Custom vars
 version: 3.0.0
 
-# Navbar page list
 nav:
   - title: Blog
     url: /archive
