@@ -45,7 +45,7 @@ O código acima deve funcionar normalmente como mencionado, você pode executá-
 
 Qual o maior problema? Simples! As definições das funções que serão chamadas está em texto plano, ou seja, se um anti-virus utilizasse regras para bloquear a chamada de função `MessageBox` simplesmente verificando por uma string, nosso código não funcionaria.
 
-Para contornar isso, ou melhor, evadir essa regra hipotética, podemos fazer um melhor uso do atributo DllImport em C#. Existem várias formas de se usar `DllImport` e uma delas é com o uso de *ordinals*:
+Para contornar isso, ou melhor, evadir essa regra hipotética, podemos fazer um melhor uso do atributo `DllImport` em C#. Existem várias formas de se usar `DllImport` e uma delas é com o uso de *ordinals*:
 
 - Um ordinal é um index que identifica uma função em uma dll
 - Podemos utilizar um ordinal para fazer chamadas de API sem necessariamente usar o nome da função
