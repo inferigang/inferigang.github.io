@@ -1,6 +1,9 @@
 ---
 layout: default
-title: Archive
+title: archive
+author: inferigang
+image: /assets/banners/default.png
+description: "The map of all our papers"
 ---
 
 # Archive
