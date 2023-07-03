@@ -4,6 +4,7 @@ title: Hiding System Calls using Ordinals in C#
 author: sorahed
 image: /assets/banners/hiding-system-calls-with-ordinals-in-cs.png
 description: "A little bit about how to use ordinals to hide system calls in C#"
+toc: true
 ---
 
 É muito comum na área de red team, ao fazer um teste de intrusão em uma rede interna, nos depararmos com soluções de defesa como anti-virus, as quais cada dia evoluem mais e mais, um ramo onde milhões de dólares são investidos na aprimoração das suas técnicas de detecção. Sabendo disso, atacantes buscam sempre por novas táticas para evadir essas soluções, sejam elas mais simples como anti-virus ou mais complexas como EDRs e XDRs no geral.

@@ -4,6 +4,7 @@ title: Técnicas de Ofuscação em C, pt 1.
 author: astreuzz
 image: /assets/banners/tecnicas-de-ofuscacao-em-c.png
 description: "Uma introdução sobre técnicas de ofuscação em C"
+toc: true
 ---
 
 # Introdução
@@ -94,7 +95,11 @@ Voltando ao exemplo, ainda temos um inteiro `i` que é incrementado, mas a parti
 
 # String Obfuscation
 
-Como vimos, strings são um ótimo lugar para aplicarmos os recurso da linguagem, inclusive são um dos principais meios de detecção dos sistemas de defesa. É por isso que, apesar das técnicas mencionadas serem relativamente boas, nem sempre serão eficientes isoladamente e um problema dos códigos anteriores é o armazenamento das strings. Numa definição de um char pointer como a seguinte: `char *s = "inferigang"` temos um ponteiro para um char armazenado no binário, numa área de apenas leitura `.rodata`. Essa string poderia ser facilmente obtida com uma análise simples, um um exemplo com o utilitário `strings` do GNU:
+Como vimos, strings são um ótimo lugar para aplicarmos os recurso da linguagem, inclusive são um dos principais meios de detecção dos sistemas de defesa. É por isso que, apesar das técnicas mencionadas serem relativamente boas, nem sempre serão eficientes isoladamente e um problema dos códigos anteriores é o armazenamento das strings. 
+
+## .rodata e Stack
+
+Numa definição de um char pointer como a seguinte: `char *s = "inferigang"` temos um ponteiro para um char armazenado no binário, numa área de apenas leitura chamada `.rodata`. Essa string poderia ser facilmente obtida com uma análise simples, um um exemplo com o utilitário `strings` do GNU:
 
 ![ofus-0.png](/assets/img/ofus-0.png)
 
@@ -109,6 +114,24 @@ Sim, ainda assim a string pode ser facilmente identificada mesmo estando na stac
 Para melhorar essa abordagem, podemos aplicar uma outra técnica de ofuscação chamada XOR encrypt, a qual consiste basicamente em aplicar uma operação XOR bitwise nos valores ASCII usando uma máscara como “senha”. A implementação de XOR encrypt é bastante simples, um breve exemplo:
 
 ![ofus-2.png](/assets/img/ofus-2.png)
+
+# Dummy Code Insertion
+
+Outra técnica bastante simples e comum é a inserção de código dummy no programa. Um código dummy é algo que não modifica o comportamento do programa, com o propósito de gerar uma assinatura diferente ou dificultar a vida de um analista de malware. Exemplo:
+
+```c
+#include <stdio.h>
+
+int main( void ) {
+  int _dummyC0de = 0xdead;
+  char *s = "RandomSTRINGreadONLY";
+	puts( "Scientia Potentia Est!" );
+  _dummyC0de ? "ANOTHERSTRING" : "DUMB";
+  dummy:
+    "MYSTRING";
+	return 0;
+}
+```
 
 # Conclusão
 
