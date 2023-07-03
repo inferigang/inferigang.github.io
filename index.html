@@ -6,6 +6,20 @@ image: /assets/banners/default.png
 description: "The map of all our papers"
 ---
 
+Hi little man! I'm happy to see you here, feel free to read or share our latest papers. If you want to know more, read <a href="/about">about us</a>.
+
+<div class="explorer">
+  <h2>Latest Papers</h2>
+  <ul>
+    {% for post in site.posts limit: 5 %}
+    <li>
+      {{ post.date | date: "%d/%m/%Y" }} <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a> by <a href="{{ post.author_url }}" target="_blank"> @{{ post.author }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+
+<hr>
+
 <div class="posts">
   {% for post in paginator.posts %}
   <article class="post">
