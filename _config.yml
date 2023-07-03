@@ -10,6 +10,7 @@ plugins:
   - jekyll-gist
   - jekyll-paginate
   - jekyll-seo-tag
+  - jekyll-toc
 
 # Optimize Jekyll
 exclude:
