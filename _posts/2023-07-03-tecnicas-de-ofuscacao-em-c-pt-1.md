@@ -79,6 +79,8 @@ No exemplo acima temos a string `inferi\0gang` armazenada em um `char *` (char p
 
 A string `inferi` é impressa e finaliza no primeiro null byte `\0` e a segunda finaliza no null byte declarado implicitamente pelo compilador no string literal. O primeiro `puts(s)` nada nos interessa, entretanto o segundo `puts(s + 7)` possui um comportamento interessante. Nele acontece o decaimento de array em ponteiro, onde `s` aponta não para uma array, mas agora para o primeiro elemento da array. Dessa forma, ao incrementar podemos acessar os outros elementos dessa array, já que são armazenados de forma sequencial.
 
+Usando como exemplo o operador de subscript `arr[idx]` (usado para acessar elementos de uma array), temos como [definição](https://en.cppreference.com/w/c/language/operator_member_access), na verdade, a seguinte expressão: `*((arr) + (idx))`. 
+
 ## Compound Literals
 
 Outro recurso utilizado e não tanto conhecido foi compound literals. Esse recurso permite instanciarmos objetos anônimos, ou seja, sem identificadores diretamente em um bloco de código. Esse comportamento poderia ser facilmente obtido com um string literal, porém como parte da técnica, vemos diferentes formas de se obter um mesmo resultado.
