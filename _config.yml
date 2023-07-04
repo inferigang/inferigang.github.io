@@ -9,6 +9,7 @@ plugins:
   - jekyll-paginate
   - jekyll-seo-tag
   - jekyll-toc
+  - jekyll-sitemap
 
 exclude:
   - .editorconfig
