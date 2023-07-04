@@ -6,11 +6,10 @@ layout: default
   <h1 class="post-title">{{ page.title }}</h1>
   <p>Written by <a href="{{ page.author_url }}">@{{ page.author }}</a></p>
   <time datetime="{{ page.date | date_to_xmlschema }}" class="post-date">{{ page.date | date_to_string }}</time>
-  <div id="table-of-contents">
-    {% toc %}
-  </div>
-  <div id="markdown-content">
-    {{ content }}
+  <div>
+    <div id="table-of-contents">
+      {{ content | toc }}
+    </div>
   </div>
 </article>
 
