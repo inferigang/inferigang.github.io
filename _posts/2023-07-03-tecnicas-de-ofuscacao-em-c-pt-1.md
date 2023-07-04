@@ -91,9 +91,9 @@ Aqui instanciamos um compound literal para um ponteiros de array de chars. em se
 
 Voltando ao exemplo, ainda temos um inteiro `i` que é incrementado, mas a partir de agora ficou fácil entender, né?
 
-1. `(char *[]){ "Scientia Potentia Est!\n" }[ 0 ][ idx++ ]` Aqui acessamos cara elemento da string armazenada no compound literal
+1. `(char *[]){ "Scientia Potentia Est!\n" }[ 0 ][ idx++ ]` Aqui acessamos cada elemento da string armazenada no compound literal, usando o subscript operator.
 
-2. `*( (char *[]){ "abcdefghijklmnopqrstuvw" }[ 0 ] + idx` Aqui somamos `i` em uma máscara que contém exatamente 23 elementos (o mesmo tamanho da string que será impressa no terminal). É apenas uma forma de acrescentar `idx`, poderiamos obter o mesmo resultado com `idx != 23`
+2. `*( (char *[]){ "abcdefghijklmnopqrstuvw" }[ 0 ] + idx` Aqui somamos `i` em uma máscara que contém exatamente 23 elementos (o mesmo tamanho da string que será impressa no terminal), enquanto não for null byte, a iteração continua. É apenas uma forma de acrescentar `idx`, poderiamos obter o mesmo resultado com `idx != 23`
 
 # String Obfuscation
 
