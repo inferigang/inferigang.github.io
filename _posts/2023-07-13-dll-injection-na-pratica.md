@@ -2,7 +2,7 @@
 layout: post
 title: DLL Injection na Prática
 author: spyware
-author_url: 
+author_url: //twitter.com/CryptDeriveKey
 image: /assets/banners/dlli.png
 description: "Um pouco sobre DLL na prática"
 toc: true
