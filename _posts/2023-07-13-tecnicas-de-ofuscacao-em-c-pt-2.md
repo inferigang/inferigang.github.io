@@ -170,13 +170,13 @@ int main( void ) {
 
 Com isso, apesar da DLL kernel32 ainda ser exposta, nela não será mais mostrado o uso da função IsBeingDebugged!
 
-![Untitled](/assets/img/o3.png)
+![Untitled](/assets/img/o4.png)
 
 ## Bypassando BeingDebugged
 
 Hoje em dia debuggers são bastante complexos e possuem técnicas para bypassar essa validação, x64dbg por exemplo, possui a opção de escondê-lo:
 
-![Untitled](/assets/img/o4.png)
+![Untitled](/assets/img/o3.png)
 
 # Conclusão
 
