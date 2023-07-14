@@ -81,7 +81,7 @@ Agora falando da detecção dessa técnica, temos maneiras bem sólidas e simple
 
 YARA:
 
-```yara
+```
 import "pe"
 
 rule DllInjection {
