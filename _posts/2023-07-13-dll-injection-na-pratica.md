@@ -14,10 +14,10 @@ O próprio sistema Windows fornece proteção para com essas DLLs, através do W
 
 Temos duas formas de carregarmos DLLs em uma aplicação, sendo elas: Load-time dynamic linking e Run-time dynamic linking.
 
-#### Load-time dynamic linking:
+## Load-time dynamic linking:
 A aplicação inclui DLLs no seu código estaticamente, ou seja, inclui um arquivo header (.h) e importa esse arquivo header no momento de sua compilação. Deixando com que o Linker faça o trabalho de carregar e resolver a DLL e suas respectivas funções.
 
-#### Run-time dynamic linking:
+## Run-time dynamic linking:
 A aplicação utiliza das funções LoadLibrary/Ex em conjunto da GetProcAddress para obter o endereço da função de uma DLL enquanto em Runtime.
 
 Já entendemos o que é uma DLL, e como as mesmas são utilizadas, agora podemos entender a técnica de injeção de código: DLL Injection (T1055.001 — [https://attack.mitre.org/techniques/T1055/001/](url)).
@@ -70,7 +70,7 @@ CreateRemoteThread(processHandle, NULL, 0, lpStart, remoteBuffer, 0, NULL);
 
 E assim temos nossa DLL maliciosa sendo executada no contexto de outro processo.
 
-#### Detecção
+# Detecção
 
 Agora falando da detecção dessa técnica, temos maneiras bem sólidas e simples, podemos por exemplo:
 
