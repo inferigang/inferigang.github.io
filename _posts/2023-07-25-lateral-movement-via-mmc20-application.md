@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Lateral Movement Technique using Microsft MC20 Component Object (MMC20.Application)
+title: Lateral Movement Technique using MMC20.Application
 author: nagini
 author_url: 
 image: /assets/banners/nag.png
