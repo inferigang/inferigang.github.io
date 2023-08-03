@@ -129,7 +129,7 @@ Vimos como o ViewStates pode ser explorando e uma breve explicação sobre a té
 
 Obrigado por ler até aqui, e até a próxima! =)
 
-<div style="text-align: left;">
+<div clstyle="text-align: initial; text-justify: initial;">
 - <a href="https://github.com/raise-isayan/ViewStateDecoder/tree/master/release">[1] https://github.com/raise-isayan/ViewStateDecoder/tree/master/release</a>   
 - <a href="https://github.com/blacklanternsecurity/badsecrets">[2] https://github.com/blacklanternsecurity/badsecrets</a>   
 - <a href="https://github.com/pwntester/ysoserial.net/">[3] https://github.com/pwntester/ysoserial.net/</a>
