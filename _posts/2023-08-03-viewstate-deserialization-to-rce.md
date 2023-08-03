@@ -129,6 +129,7 @@ Vimos como o ViewStates pode ser explorando e uma breve explicação sobre a té
 
 Obrigado por ler até aqui, e até a próxima! =)
 
+<div style="text-align: left;">
 - <a href="https://github.com/raise-isayan/ViewStateDecoder/tree/master/release">[1] https://github.com/raise-isayan/ViewStateDecoder/tree/master/release</a>   
 - <a href="https://github.com/blacklanternsecurity/badsecrets">[2] https://github.com/blacklanternsecurity/badsecrets</a>   
 - <a href="https://github.com/pwntester/ysoserial.net/">[3] https://github.com/pwntester/ysoserial.net/</a>
@@ -138,6 +139,7 @@ Obrigado por ler até aqui, e até a próxima! =)
 - <a href="https://soroush.me/blog/2019/04/exploiting-deserialisation-in-asp-net-via-viewstate/">[7] https://soroush.me/blog/2019/04/exploiting-deserialisation-in-asp-net-via-viewstate/</a>
 - <a href="https://github.com/Y4er/dotnet-deserialization/blob/main/ViewState.md">[8] https://github.com/Y4er/dotnet-deserialization/blob/main/ViewState.md</a>    
 - <a href="https://notsosecure.com/exploiting-viewstate-deserialization-using-blacklist3r-and-ysoserial-net">[9] https://notsosecure.com/exploiting-viewstate-deserialization-using-blacklist3r-and-ysoserial-net</a>    
+</div>
 
 ```
 ⠀⠀⠀⢰⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
