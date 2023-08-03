@@ -61,7 +61,7 @@ Estava realizando um pentest para um amigo em um ambiente, e acabo me deparando 
 <img src="/assets/img/Pasted image 20230802113354.png">
 <img src="/assets/img/Pasted image 20230802113553.png">
 
-Após isso utilizei o a extensão "ViewStateDecoder"[1], que pode ser utilizado no BurpSuite. Após a instalação da extensão peguei o valor do viewstate que estava no website e fiz um decode, e assim percebendo que conseguimos decodar e que o MAC não esta habilitado. o que dificultaria o processo.
+Após isso utilizei a extensão "ViewStateDecoder"[1], que pode ser utilizado no BurpSuite. Após a instalação da extensão peguei o valor do viewstate que estava no website e fiz um decode, e assim percebendo que conseguimos decodar e que o MAC não esta habilitado. o que dificultaria o processo.
 
 <img src="/assets/img/Pasted image 20230802185338.png">
 
@@ -129,18 +129,6 @@ Vimos como o ViewStates pode ser explorando e uma breve explicação sobre a té
 
 Obrigado por ler até aqui, e até a próxima! =)
 
-<div clstyle="text-align: initial; text-justify: initial;">
-- <a href="https://github.com/raise-isayan/ViewStateDecoder/tree/master/release">[1] https://github.com/raise-isayan/ViewStateDecoder/tree/master/release</a>   
-- <a href="https://github.com/blacklanternsecurity/badsecrets">[2] https://github.com/blacklanternsecurity/badsecrets</a>   
-- <a href="https://github.com/pwntester/ysoserial.net/">[3] https://github.com/pwntester/ysoserial.net/</a>
-- <a href="http://dnslog.cn/">[4] http://dnslog.cn/</a>    
-- <a href="https://app.interactsh.com/">[5] https://app.interactsh.com/</a>    
-- <a href="https://notsosecure.com/out-band-exploitation-oob-cheatsheet">[6] https://notsosecure.com/out-band-exploitation-oob-cheatsheet</a>    
-- <a href="https://soroush.me/blog/2019/04/exploiting-deserialisation-in-asp-net-via-viewstate/">[7] https://soroush.me/blog/2019/04/exploiting-deserialisation-in-asp-net-via-viewstate/</a>
-- <a href="https://github.com/Y4er/dotnet-deserialization/blob/main/ViewState.md">[8] https://github.com/Y4er/dotnet-deserialization/blob/main/ViewState.md</a>    
-- <a href="https://notsosecure.com/exploiting-viewstate-deserialization-using-blacklist3r-and-ysoserial-net">[9] https://notsosecure.com/exploiting-viewstate-deserialization-using-blacklist3r-and-ysoserial-net</a>    
-</div>
-
 ```
 ⠀⠀⠀⢰⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠘⡇⠀⠀⠀⢠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -165,3 +153,13 @@ Obrigado por ler até aqui, e até a próxima! =)
 ⠀⠀⢸⡇⣿⣿⣿⣿⣿⡏⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⢰⣶⣶⣶⣾⣿⢃⣿⣿⣿⣿⣯⣿⣭⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ```
+
+- <a href="https://github.com/raise-isayan/ViewStateDecoder/tree/master/release">[1] https://github.com/raise-isayan/ViewStateDecoder/tree/master/release</a>   
+- <a href="https://github.com/blacklanternsecurity/badsecrets">[2] https://github.com/blacklanternsecurity/badsecrets</a>   
+- <a href="https://github.com/pwntester/ysoserial.net/">[3] https://github.com/pwntester/ysoserial.net/</a>
+- <a href="http://dnslog.cn/">[4] http://dnslog.cn/</a>    
+- <a href="https://app.interactsh.com/">[5] https://app.interactsh.com/</a>    
+- <a href="https://notsosecure.com/out-band-exploitation-oob-cheatsheet">[6] https://notsosecure.com/out-band-exploitation-oob-cheatsheet</a>    
+- <a href="https://soroush.me/blog/2019/04/exploiting-deserialisation-in-asp-net-via-viewstate/">[7] https://soroush.me/blog/2019/04/exploiting-deserialisation-in-asp-net-via-viewstate/</a>
+- <a href="https://github.com/Y4er/dotnet-deserialization/blob/main/ViewState.md">[8] https://github.com/Y4er/dotnet-deserialization/blob/main/ViewState.md</a>    
+- <a href="https://notsosecure.com/exploiting-viewstate-deserialization-using-blacklist3r-and-ysoserial-net">[9] https://notsosecure.com/exploiting-viewstate-deserialization-using-blacklist3r-and-ysoserial-net</a>
