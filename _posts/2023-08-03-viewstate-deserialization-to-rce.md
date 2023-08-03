@@ -7,8 +7,6 @@ description: "Exploitando VIEWSTATES e conseguindo um RCE OOB"
 toc: true
 ---
 
-# ViewState Deserialization RCE
-
 ```
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣶⣾⣿⣶⣦⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢘⣿⣿⣿⣿⣿⣿⣿⣷⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -156,12 +154,12 @@ Obrigado por ler até aqui, e até a próxima! =)
 ⠀⠀⠀⢰⣶⣶⣶⣾⣿⢃⣿⣿⣿⣿⣯⣿⣭⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ```
 
-- [1] https://github.com/raise-isayan/ViewStateDecoder/tree/master/release
-- [2] https://github.com/blacklanternsecurity/badsecrets
-- [3] https://github.com/pwntester/ysoserial.net/
-- [4] http://dnslog.cn/
-- [5] https://app.interactsh.com/
-- [6] https://notsosecure.com/out-band-exploitation-oob-cheatsheet
-- [7] https://soroush.me/blog/2019/04/exploiting-deserialisation-in-asp-net-via-viewstate/
-- [8] https://github.com/Y4er/dotnet-deserialization/blob/main/ViewState.md
-- [9] https://notsosecure.com/exploiting-viewstate-deserialization-using-blacklist3r-and-ysoserial-net
+- ![[1] https://github.com/raise-isayan/ViewStateDecoder/tree/master/release](https://github.com/raise-isayan/ViewStateDecoder/tree/master/release)
+- ![[2] https://github.com/blacklanternsecurity/badsecrets](https://github.com/blacklanternsecurity/badsecrets)
+- ![[3] https://github.com/pwntester/ysoserial.net/](https://github.com/pwntester/ysoserial.net/)
+- ![[4] http://dnslog.cn/](http://dnslog.cn/)
+- ![[5] https://app.interactsh.com/](https://app.interactsh.com/)
+- ![[6] https://notsosecure.com/out-band-exploitation-oob-cheatsheet](https://notsosecure.com/out-band-exploitation-oob-cheatsheet)
+- ![[7] https://soroush.me/blog/2019/04/exploiting-deserialisation-in-asp-net-via-viewstate/](https://soroush.me/blog/2019/04/exploiting-deserialisation-in-asp-net-via-viewstate/)
+- ![[8] https://github.com/Y4er/dotnet-deserialization/blob/main/ViewState.md](https://github.com/Y4er/dotnet-deserialization/blob/main/ViewState.md)
+- ![[9] https://notsosecure.com/exploiting-viewstate-deserialization-using-blacklist3r-and-ysoserial-net](https://notsosecure.com/exploiting-viewstate-deserialization-using-blacklist3r-and-ysoserial-net)
