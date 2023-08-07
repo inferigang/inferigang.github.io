@@ -1,3 +1,12 @@
+---
+layout: post
+title: Lidando com Named Pipes no Windows
+author: spyware
+image: /assets/banners/lidando_com_named.png
+description: "Uma breve introdução sobre como malwares utilizam desse mecanismo de IPC do sistema Windows."
+toc: true
+---
+
 Um dos principais mecanismos de realizar-se uma comunicação entre processos (IPC) no Windows é através da **memória compartilhada entre esses processos**.
 
 Sabendo disso, _pipes_ são nada mais que um range de memória compartilhada tratadas como **objeto de arquivo**. Então, como são tratados como arquivos, podemos utilizar funções comuns destinadas a arquivos da _Windows API_ como forma de interação para com esses _pipes_. 
@@ -13,7 +22,7 @@ Existem dois principais tipos de _pipes_: **_Named pipes_** e **_Anonymous pipes
 Neste artigo, vamos focar principalmente nos _named pipes_, porém alguns conceitos explicados aqui também servem para _anonymous pipes_.
 
 Um _named pipe_ funciona através de um modelo `client-server`, onde há o _named pipe_ servidor e diversos _named pipes_ clientes. Todas as instâncias de um _named pipe_ específico **devem compartilhar o mesmo nome**, porém cada instância tem seu próprio _buffer_, _handle_ e canal de comunicação.
-#### Agora, como é feita a comunicação entre esses pipes?
+# Agora, como é feita a comunicação entre esses pipes?
 
 Sabendo que esse mecanismos utiliza do modelo `client-server`, _named pipes_ podem adotar duas formas de comunicação: _half-duplex_ (HDX) ou _full-duplex_ (FDX). No HDX, o cliente abre um canal onde pode escrever dados no servidor, sem resposta do servidor. Já no FDX, um canal de duas-mãos é aberto, possibilitando a escrita de ambos os lados.
 
@@ -121,7 +130,7 @@ Checando os argumentos passados a _API_, vemos que:
 Estendendo a análise, percebemos que todo esse algoritmo trata-se de um **loop**, onde são passadas diversas _APIs_ a esse `jmp eax`. Então vamos continuando a execução até parar na instrução `jmp eax` de novo.
 
 O segundo hit do breakpoint já fica **interessantíssimo**, é uma chamada a API `CreateNamedPipe()`, tema principal deste artigo.
-#### O named pipe:
+# O named pipe:
 
 Vendo os argumento passados à _API_, encontramos o nome do _named pipe_ criado pelo _shellcode_, sendo ele:  `\\\\.\\pipe\\status_b5ba`.
 
@@ -142,7 +151,7 @@ Porém agora temos um problema. Após essa chamada, não temos mais hits no noss
 De acordo com a documentação da _Microsoft_, caso o parâmetro `hNamedPipe` da _API_ `ConnectNamedPipe()` **não** for aberto com a flag `FILE_FLAG_OVERLAPPED` (O que é o nosso caso), a função **não retornará até receber uma conexão ou um erro ocorrer**.
 
 Sabendo disso, podemos **inferir** que o _shellcode_ está esperando uma conexão no _named pipe_ que o mesmo criou. E como prosseguimos a análise? Simples! Nos **conectamos** a esse _named pipe_!
-#### Conexão:
+# Conexão:
 
 O intuito agora é nos conectarmos a esse _named pipe_ através da função `CallNamedPipeA()`. Para realizarmos essa conexão um simples código em C será o suficiente.
 
@@ -166,17 +175,17 @@ int main (void) {
 ```
 
 > _Não esqueça de rodar o programa com os **mesmos níveis de privilégios** que o shellcode congelado no debugger_.
-#### Leitura:
+# Leitura:
 
 Após a conexão ser feita, vemos que o _shellcode_ resume sua execução, hitando novamente o breakpoint na instrução `jmp eax`, mas dessa vez, chamando a _API_ `ReadFile()` (_Utilizada também para ler o conteúdo desse named pipe, como dito anteriormente_).
 
 A `ReadFile()`, por sua vez, lê os **0004** primeiros _bytes_ do _buffer_ desse _named pipe_ no endereço `0x00FFFAE0`, podemos confirmar essa leitura seguindo esse endereço no _dump_.
 
-##### Antes da chamada:
+## Antes da chamada:
 
 <img src="/assets/img/pipe_before_call.png">
 
-##### Depois da chamada:
+## Depois da chamada:
 
 <img src="/assets/img/pipe_after_Call.png">
 
@@ -194,7 +203,7 @@ Porém, essa chamada serve para **ler o resto do _buffer_ contido no _named pipe
 
 > _Uma terceira chamada a essa API é realizada, lendo mais 2000 bytes._
 
-#### Uso do Buffer:
+# Uso do Buffer:
 
 Agora precisamos entender como é utilizado esse _buffer_. Para isso utilizaremos _hardwares breakpoints_ no **acesso** (escrita ou leitura) desses _bytes_ vindo de qualquer fonte externa.
 
@@ -214,7 +223,7 @@ Olhando o _disassemble_ desse _breakpoint_, vemos que: caso `ecx` for igual a `e
 
 Então, caso `ecx` (ABCD em _LE_) for igual ao tamanho do parâmetro passado em `nInBufferSize` (_0004_ em _LE_), o `jmp` ocorreria para [esp+10] ("_EFGH_" (_segunda metade do shellcode_)), executando qualquer coisa que estiver nesse endereço.
 
-##### Exemplo:
+## Exemplo:
 
 ```c
 #include <windows.h>
@@ -238,7 +247,7 @@ int main (void) {
 ```
 
 Onde, seriam comparados os primeiros `\x04\x00\x00\x00` (`nInBufferSize`) e, caso fossem iguais, executaria o código contido a partir de `\x6e\x2f\x73\x68...`.
-#### Conclusão
+# Conclusão
 
 Concluímos que: O binário inicial (_shellcode_) realiza uma **injeção de código através do buffer de um _named pipe_**. Esperando que o tamanho do _shellcode_ seja definido nos primeiros parâmetro `nInBufferSize`. Sendo assim, o trabalho é distribuído entre dois binários, um injetando o código, e o outro guardando o código a ser injetado.
 
@@ -248,7 +257,7 @@ E é isso por enquanto pessoal, espero que tenham gostado. Uma ótima semana!
 
 <img src="/assets/img/pipe_tonton.gif">
 
-### Leitura Complementar:
+# Leitura Complementar:
 
 - [Identifying Named Pipe Impersonation and Other Malicious Privilege Escalation Techniques (securityintelligence.com)](https://securityintelligence.com/identifying-named-pipe-impersonation-and-other-malicious-privilege-escalation-techniques/)
 
