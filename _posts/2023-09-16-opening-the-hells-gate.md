@@ -94,8 +94,8 @@ Por ser do tipo `LIST_ENTRY`, esse campo possui um Flink e um Blink.
 
 ```c
 typedef struct _LIST_ENTRY{
-	struct _LIST_ENTRY    *Flink;
-	struct _LIST_ENTRY    *Blink;
+	struct _LIST_ENTRY    *Flink;
+	struct _LIST_ENTRY    *Blink;
 } LIST_ENTRY, *PLIST_ENTRY;
 ```
 
@@ -159,7 +159,7 @@ PE, ou Portable Executable, é um modelo padrão de armazenamento de dados em ar
 
 O modelo é nada mais que uma formatação desses bytes em uma espécie de estrutura, sendo ela dividida em: (MS-)DOS Header, DOS Stub, NT Headers (PE Signature, File/COFF Header e Optional Header), Section table e as Sections.
 
-![Untitled](Opening%20The%20Hells%20Gate%20add36889c4b54c559b74bb5c59d8fa92/Untitled.png)
+![Untitled](/assets/img/Untitled.png)
 
 > Devido ao escopo desse artigo, vamos manter nosso foco no **Optional Header.**
 > 
@@ -311,7 +311,7 @@ Feita essa verificação, atribuímos sua assinatura PE à variável Nt e adicio
 
 ```bash
 $ hd -s 0x3c -n16 putty.exe
-0000003c  f8 00 00 00 0e 1f ba 0e  00 b4 09 cd 21 b8 01 4c  |............!..L|
+0000003c  f8 00 00 00 0e 1f ba 0e  00 b4 09 cd 21 b8 01 4c  |............!..L|
 ```
 
 > *Como podem ver, o offset 0x3c+4 é a assinatura "completa", então a partir de 0e, estaríamos no File Header do arquivo.*
@@ -347,7 +347,7 @@ Em uma máquina, os SSNs não são completamente arbitrários e têm uma relaç�
 
 Essa relação é mostrada na imagem a seguir, em que o SSN de `ZwAxxessCheck` é 0 e o SSN da próxima syscall, `NtWorkerFactoryWorkerReady`, é 1 e assim por diante.
 
-![Untitled](Opening%20The%20Hells%20Gate%20add36889c4b54c559b74bb5c59d8fa92/Untitled%201.png)
+![Untitled](/assets/img/Untitled%201.png)
 
 ## Estrutura de uma syscall (x64)
 
@@ -361,11 +361,11 @@ syscall
 
 Por exemplo, o `NtAllocateVirtualMemory` em um sistema de 64 bits é mostrado abaixo.
 
-![Untitled](Opening%20The%20Hells%20Gate%20add36889c4b54c559b74bb5c59d8fa92/Untitled%202.png)
+![Untitled](/assets/img/Untitled%202.png)
 
 E `NtProtectedVirtualMemory`
 
-![Untitled](Opening%20The%20Hells%20Gate%20add36889c4b54c559b74bb5c59d8fa92/Untitled%203.png)
+![Untitled](/assets/img/Untitled%203.png)
 
 ## Explicando as instruções das syscalls
 
@@ -425,7 +425,7 @@ Esse método é ultizado na técnica que vamos ver a seguir, onde os SSN’s das
 
 Indirect Sysscalls são implementadas de forma semelhante as direct syscalls, em que os arquivos assembly são criados de forma manual primeiro. A diferença está na ausência da instrução syscall dentro da função assembly, que, em vez disso, é pulada. 
 
-![Untitled](Opening%20The%20Hells%20Gate%20add36889c4b54c559b74bb5c59d8fa92/Untitled%204.png)
+![Untitled](/assets/img/Untitled%204.png)
 
 As funções de assembly para `NtAllocateVirtualMemory` e `NtProtectVirtualMemory` são mostradas abaixo.
 
@@ -455,7 +455,7 @@ Essa abordagem de indirect syscalls, é abordada em uma outra técnica semelhant
 
 Unhooking é uma outra abordagem para evitar os hooks, na qual a biblioteca NTDLL com os hooks instalados na memória é substituída por uma versão sem hook. A versão sem hook pode ser obtida em vários lugares. mas uma das abordagens mais comuns é carregá-la diretamente do disco. Ao fazer isso, todos os hooks colocados dentro da NTDLL serão removidos.
 
-![Untitled](Opening%20The%20Hells%20Gate%20add36889c4b54c559b74bb5c59d8fa92/Untitled%205.png)
+![Untitled](/assets/img/Untitled%205.png)
 
 ---
 
@@ -555,7 +555,7 @@ A segunda parte começa com um loop while após encontrar o endereço da syscall
 
 No caso em que a syscall é hookada, os opcodes podem não corresponder devido ao fato de o hook ter sido adicionado por soluções de segurança antes da instrução `syscall`. Para resolver esse problema, o Hell's Gate tenta corresponder aos opcodes e, se não for encontrada nenhuma correspondência, a variável `cw` é incrementada, o que é adicionado ao endereço da syscall na iteração subsequente do loop. Essa progressão continua, descendo um byte de cada vez até que as instruções `mov r10, rcx` e `mov rcx, ssn` sejam alcançadas. A imagem abaixo ilustra como o Hell's Gate encontra os opcodes percorrendo o hook.
 
-![Untitled](Opening%20The%20Hells%20Gate%20add36889c4b54c559b74bb5c59d8fa92/Untitled%206.png)
+![Untitled](/assets/img/Untitled%206.png)
 
 ## Estabelecendo limites
 
@@ -582,7 +582,7 @@ pVxTableEntry->wSystemCall = (high << 8) | low;
 
 Para entendermos melhor isso, vamos mostrar a seguir um exemplo ultilizando a sycall NtProtectVirtualMemory para demonstrar essa abordagem, de como o Hell’s Gate calcula o SSN.
 
-![Untitled](Opening%20The%20Hells%20Gate%20add36889c4b54c559b74bb5c59d8fa92/Untitled%207.png)
+![Untitled](/assets/img/Untitled%207.png)
 
 A imagem acima é simplificada para o trecho abaixo.
 
@@ -604,11 +604,11 @@ BYTE low = *((PBYTE)pFunctionAddress + 4 + cw); // Offset 4
 
 Checando o valor no offset 5 revela que ele é `0x00`, enquanto o offset 4 é `0x50`. Isso significa que o valor de high é `0x00` e o de low é `0x50`. Portanto, o SSN é igual a `(0x00 << 8`) |  `0x50`.
 
-![Untitled](Opening%20The%20Hells%20Gate%20add36889c4b54c559b74bb5c59d8fa92/Untitled%208.png)
+![Untitled](/assets/img/Untitled%208.png)
 
 O resultado da operação bitwise corresponde ao número SSN de `NtProtectVirtualMemory`, que é 50 em hexadecimal.
 
-![Untitled](Opening%20The%20Hells%20Gate%20add36889c4b54c559b74bb5c59d8fa92/Untitled%209.png)
+![Untitled](/assets/img/Untitled%209.png)
 
 ## VxMoveMemory
 
