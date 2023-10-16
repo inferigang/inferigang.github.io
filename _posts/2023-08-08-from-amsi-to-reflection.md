@@ -135,7 +135,7 @@ frida-trace -p powershell-pid -x amsi.dll -i Amsi*
 
 Após isso, o frida já esta fazendo o trace do nosso processo do powershell, neste caso se inserirmos alguma coisa, no powershell, já ira ser captada, eu vou digitar o famoso ‘amsiUtils’, que é uma string que ja possui assinatura, então o amsi detectará como malware.
 
-![Untitled](/assets/img/Untitled%201.png)
+<img src="/assets/img/AMSIBYPASS (1).png">
 
 O amsiContext é uma estrutura cujo endereço de memória permanece o mesmo enquanto o processo do powershell está ativo, por isso, se conseguirmos fazer alguma alteração nessa estrutura, ele refletirá enquanto o processo está aberto.
 
@@ -143,7 +143,7 @@ Agora vamos para o WinDBG, analisar como essa estrutura se comporta, e por lá f
 
 Com o WinDBG aberto, basta dar um attach ao processo do powershell.
 
-![Untitled](/assets/img/Untitled%202.png)
+<img src="/assets/img/AMSIBYPASS (2).png">
 
 Primeiramente, vamos fazer o dump do conteúdo existente dentro dessa estrutura:
 
@@ -151,7 +151,7 @@ Primeiramente, vamos fazer o dump do conteúdo existente dentro dessa estrutura:
 dc endereçoAmsiContext
 ```
 
-![Untitled](/assets/img/Untitled%203.png)
+<img src="/assets/img/AMSIBYPASS (3).png">
 
 Os 4 primeiros bytes são fixos, o que significa que essa string pode ser estática entre os processos
 
@@ -170,7 +170,7 @@ Podemos ver como essa API se comporta fazendo o disassembly
 u amsi!AmsiOpenSession
 ```
 
-![Untitled](/assets/img/Untitled%204.png)
+<img src="/assets/img/AMSIBYPASS (4).png">
 
 Conseguimos ver que a string AMSI é comparada com algum valor dentro de RCX. Em assembly 64 bits, RCX guarda o valor do primeiro argumento da função, que nesse caso, é justamente o **amsiContext,** ou seja, estamos comparando o cabeçalho do buffer com a string
 
@@ -180,7 +180,7 @@ Em caso da string não ser igual a AMSI, nos vamos para a instrução JNE, onde 
 u amsi!AmsiOpenSession+0x4b L2
 ```
 
-![Untitled](/assets/img/Untitled%205.png)
+<img src="/assets/img/AMSIBYPASS (5).png">
 
 Um valor é colocado em EAX e a função é retornada. ( Em assembly 32 e 64, os valores de funções são colocados em EAX).
 
@@ -188,7 +188,7 @@ Um valor é colocado em EAX e a função é retornada. ( Em assembly 32 e 64, os
 
 A função retorna um dado do tipo HRESULT, podemos ir na [documentação da microsoft](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8) e verificar qual valor significa esse resultado 80070057
 
-![Untitled](/assets/img/Untitled%206.png)
+<img src="/assets/img/AMSIBYPASS (6).png">
 
 A função retorna um valor de argumento inválido e termina a execução.
 
@@ -208,7 +208,7 @@ g
 
 Depois mandamos por exemplo a string que o amsi alerta, ‘amsiUtils’. Logo após isso, o breakpoint sera ativado:
 
-![Untitled](/assets/img/Untitled%207.png)
+<img src="/assets/img/AMSIBYPASS (7).png">
 
 Agora ultilizando o comando **ed** do WinDBG, vamos escrever no endereço de memória e apagar o cabeçalho onde esta escrito AMSI
 
@@ -218,11 +218,11 @@ ed rcx 0
 dc rcx L1
 ```
 
-![Untitled](/assets/img/Untitled%208.png)
+<img src="/assets/img/AMSIBYPASS (8).png">
 
 Como resultado, após gerar o erro, conseguimos corromper o AMSI e executar a string sem bloqueios:
 
-![Untitled](/assets/img/Untitled%209.png)
+<img src="/assets/img/AMSIBYPASS (9).png">
 
 ## Criando o bypass com powershell
 
@@ -267,7 +267,7 @@ $c.GetFields('NonPublic,Static')
 
 O primeiro campo é o que procuramos:
 
-![Untitled](/assets/img/Untitled%2010.png)
+<img src="/assets/img/AMSIBYPASS (10).png">
 
 Conseguimos acessar esse método, que é justamente o que precisamos para contornar o
 AMSI, o único problema é que se colocarmos essa string no comando, o AMSI também irá
@@ -288,7 +288,7 @@ Foreach($e in $d) {if ($e.Name -like "*Context") {$f=$e}}
 
 E assim, salvamos uma referência a esse objeto:
 
-![Untitled](/assets/img/Untitled%2011.png)
+<img src="/assets/img/AMSIBYPASS (11).png">
 
 Podemos checar o conteúdo com o comando:
 
@@ -298,7 +298,7 @@ $f.GetValue($null)
 
 Que irá retornar um número decimal:
 
-![Untitled](/assets/img/Untitled%2012.png)
+<img src="/assets/img/AMSIBYPASS (12).png">
 
 Para confirmar que esse número é realmente o que estamos procurando, vamos convertê-lo
 para hexadecimal, que no meu caso, será **0x1563745672608**.
@@ -336,6 +336,6 @@ $a=[Ref].Assembly.GetTypes();Foreach($b in $a) {if ($b.Name -like "*iUtils") {$c
 
 Assim criamos um bypass funcional para o AMSI:
 
-![Untitled](/assets/img/Untitled%2013.png)
+<img src="/assets/img/AMSIBYPASS (13).png">
 
 Obrigado por ler até aqui, e até a proxima.
