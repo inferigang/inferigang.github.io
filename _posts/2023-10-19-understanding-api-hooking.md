@@ -3,7 +3,7 @@ layout: post
 title: Understanding API Hooking
 author: sorahed
 image: /assets/banners/api-hooking.png
-description: ""
+description: "Uma visão introdutória sobre o que é, como funciona e aplicações práticas da técnica de API Hooking utilizada em soluções de defesas como AV/EDR."
 toc: true
 ---
 
