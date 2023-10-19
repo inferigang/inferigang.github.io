@@ -278,13 +278,13 @@ pRemoteCode = VirtualAllocEx(hProc, NULL, payload_len, MEM_COMMIT, PAGE_EXECUTE_
 
 Eu vou utilizar o ProcessHacker para injetar a DLL no processo de destino, mas antes vou rodar o programa normalmente, sem injetar a DLL.
 
-![Untitled]("/assets/img/Detouring (1).png")
+<img src="/assets/img/Detouring (1).png">
 
 O programa rodou normalmente, e alocou a memória sem nenhum tipo de erro. Agora enquanto o processo roda, e esta suspenso por um getchar, eu vou injetar a DLL no processo, e vamos ver oque acontece.
 
-![Untitled]("/assets/img/Detouring (2).png")
+<img src="/assets/img/Detouring (2).png">
 
-![Untitled]("/assets/img/Detouring (3).png")
+<img src="/assets/img/Detouring (3).png">
 
 E voilà, o hook foi triggado com sucesso e o processo terminou antes de alocar a memória, muito top não é?
 
