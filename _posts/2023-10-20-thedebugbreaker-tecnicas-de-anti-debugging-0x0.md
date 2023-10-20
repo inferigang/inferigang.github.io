@@ -35,7 +35,7 @@ Os breakpoints são um dos recursos mais poderosos presente nos debuggers, sendo
 <img src="/assets/img/tdb0x0-0.png">
 
 Uma demonstração do poder dos breakpoints bypassando uma função básica de anti-debugging:
-<video autoplay loop muted poster="/assets/img/tdb0x0-0.png"><source src="/assets/img/no-debugger.mkv" type="video/mkv"></video>
+<video autoplay loop muted poster="/assets/img/tdb0x0-0.png"><source src="/assets/img/no-debugger.gif" type="video/mkv"></video>
 
 
 # Anti-Debugging
