@@ -1,6 +1,6 @@
 ---
 layout: post
-title: The Debug Breaker: Técnica de Anti-Debugging Introdução
+title: "The Debug Breaker: Técnica de Anti-Debugging Introdução"
 author: astreuzz
 image: /assets/banners/tdb.png
 description: "Essa é uma série de artigos “TheDebugBreaker” sobre técnicas de anti-debugging aplicadas, nela veremos sobre como debuggers funcionam, métodos de anti-debugging, etc. Essa primeira parte é uma introdução teórica e prática de algumas técnicas."
