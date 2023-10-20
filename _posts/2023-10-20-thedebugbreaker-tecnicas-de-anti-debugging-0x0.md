@@ -7,7 +7,6 @@ description: "Essa é uma série de artigos “TheDebugBreaker” sobre técnica
 toc: true
 ---
 
-# TheDebugBreaker: Técnicas de Anti-Debugging Introdução
 # TL;DR
 
 Essa é uma série de artigos “TheDebugBreaker” sobre técnicas de anti-debugging aplicadas, nela veremos sobre como debuggers funcionam, métodos de anti-debugging, etc. Essa primeira parte é uma introdução teórica e prática de algumas técnicas. Por ora não há previsão de quantos artigos essa série terá, mas bastante legal coisa esta por vir, aguardem.
