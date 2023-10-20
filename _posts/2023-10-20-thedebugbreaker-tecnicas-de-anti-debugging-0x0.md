@@ -129,7 +129,3 @@ int main(void) {
 # Conclusão
 
 Anti-debugging é com certeza uma área extremamente complexa e gigante, há muito o que aprender e explorar. Conhecer não só o sistema operacional mas o funcionamento de outras aplicações como debuggers é essêncial para técnicas desse tipo, nos próximos artigos comentarei sobre técnicas baseadas em recursos do sistema operacional, como chamdas de API e timing. Entretanto, por hoje é só, espero que tenha entendido e acrescido em seu arsenal de ideias, até a próxima.
-
-# Referências
-
--
