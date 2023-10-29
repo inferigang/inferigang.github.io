@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ViewState Deserialization To RCE
-author: bear
+author: "A$PX"
 image: /assets/banners/viewstatedeser.png
 description: "Exploitando VIEWSTATES e conseguindo um RCE OOB"
 toc: true
