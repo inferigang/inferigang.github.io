@@ -50,7 +50,7 @@ title: Blog
         </div>
 
         <div class="post-info-footer">
-          <span class="post-date"><img src="{{ author.avatar }}" alt="" class="author-avatar"><a href="{{ member_page_url }}{{ author.nickname }}" class="raw-link author-nick-url">{{ author.nickname | capitalize }}</a> / {{ post.date | date_to_string }}</span>
+          <span class="post-date"><img src="{{ author.avatar }}" alt="" class="author-avatar"><a href="{{ member.url }}" class="raw-link author-nick-url">{{ author.nickname | capitalize }}</a> / {{ post.date | date_to_string }}</span>
           <a href="{{ post.url }}" class="raw-link post-link rounded-lg">{{ i18n.tr[page.lang].read_more | default: "???" }}</a>
         </div>
       </li>
