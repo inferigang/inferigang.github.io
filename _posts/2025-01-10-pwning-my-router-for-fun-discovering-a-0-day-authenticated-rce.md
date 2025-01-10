@@ -25,17 +25,21 @@ author_nickname: oppsec
 Everything started when I watched a talk by Maycon Vitali at H2HC titled “Internet of Sh!t - Maycon Vitali - H2HC University 2018,” where he discussed his process of discovering vulnerabilities in a Ubiquiti router. After watching the 30-minute talk, I stopped the video, looked around, and remembered an old router I used to have and still had in my house.
 
 I immediately searched for the power cable, plugged it in next to my desk, and checked if everything worked fine. After about 5 minutes, I scanned my network and found the router's IP address. I made some changes and set the IP to `192.168.15.1`. With everything set up, I ran `nmap` to check the available ports and running services.
+
 <img src="/assets/img/pwning-router-for-fun/image.png">
 
 When I saw the SSH port, I looked behind the router for any credentials and, fortunately, it had them. I tried logging in with the “admin” username, but it didn’t work, so I searched for some documentation and discovered the correct username was “support.”
+
 <img src="/assets/img/pwning-router-for-fun/image 1.png">
 
 As shown in the image above, we couldn’t execute commands or interact with the operating system beyond the initial shell. The initial goal was to figure out how to execute commands, as I had no prior experience with hardware hacking and didn’t want to attempt extracting the firmware without understanding how to do it.
 
 After a bit of research, I discovered that you could pass a direct command after the SSH command to escape the “dumb shell” we encountered when connecting.
+
 <img src="/assets/img/pwning-router-for-fun/image 2.png">
 
 Using the `netstat` command, I checked all running ports and services.
+
 <img src="/assets/img/pwning-router-for-fun/image 3.png">
 
 Through the `uname -a` command, I identified the version of the running Linux system.
@@ -44,6 +48,7 @@ Linux (none) 4.4.115 #1 SMP Fri Jul 5 16:58:21 CST 2024 armv7l GNU/Linux
 ```
 
 Using `ps w`, I also found a bunch of interesting information.
+
 <img src="/assets/img/pwning-router-for-fun/image 4.png">
 
 After experimenting with the router, I discovered some issues:
@@ -53,10 +58,13 @@ After experimenting with the router, I discovered some issues:
 - The entire router was running on a read-only system, so we couldn’t create a web shell in the web app’s directory.
 
 Not having `ls` wasn’t a problem because we still had the `find` binary. For example:
+
 <img src="/assets/img/pwning-router-for-fun/image 5.png">
 
 When I listed the files in the `/tmp` directory, I found a file called “dump.txt” that caught my attention. Reading this file, I discovered it stored network passwords in plaintext, as shown below:
+
 <img src="/assets/img/pwning-router-for-fun/image 6.png">
+
 <img src="/assets/img/pwning-router-for-fun/image 7.png">
 
 OK, that’s not a problem… I think? xD. Let’s keep going and focus on the main goal…
@@ -80,18 +88,25 @@ Why is this interesting? Because we can see the difference in permissions availa
 
 ### Attacking the Web App
 I wasn’t successful with `cURL`, `wget`, or `SCP`. So, I decided to create a tar file, convert it to base64, and save the output locally. After this, I converted it back into a normal file and successfully retrieved the content. I created the tar file from the directory `/usr/shared/web`. Opening it in VSCode revealed the following: 
+
 <img src="/assets/img/pwning-router-for-fun/image 11.png">
+
 <img src="/assets/img/pwning-router-for-fun/image 12.png">
+
 <img src="/assets/img/pwning-router-for-fun/image 13.png">
 
 Of course, we couldn’t read the CGI files directly because they are compiled C files that generate a web interface (I think xD). I started exploring the available functions in the web app and found a menu called “Tools.” Accessing it, we saw options to run commands like Ping, Traceroute, and Nslookup.
+
 <img src="/assets/img/pwning-router-for-fun/image 14.png">
 
 This immediately caught my attention. I tried injecting direct commands into it, but there was a JavaScript validation that checked for valid IPs. However, we could bypass this by capturing a valid request in Burp Suite and modifying the IP parameter.
+
 <img src="/assets/img/pwning-router-for-fun/image 15.png">
+
 <img src="/assets/img/pwning-router-for-fun/image 16.png">
 
 As we observed, there was some form of protection against command injection. By examining the code, we could understand how the function worked and look for ways to bypass or understand what was happening in the background.
+
 <img src="/assets/img/pwning-router-for-fun/image 17.png">
 
 Looking at the final lines of the code, where the `nslookup` binary runs, we noticed that our input was directly concatenated into the execution. This confirmed that there was command injection. Another interesting detail was that the output was saved to the file `/tmp/ping_result`. To confirm if our commands were being executed, we needed to read this file.
@@ -101,16 +116,19 @@ Returning to the web app, we kept trying to execute commands without immediate s
 ```json
 127.0.0.1%26%26id
 ```
+
 <img src="/assets/img/pwning-router-for-fun/image 18.png">
 
 We received a blank response because the output was rendered in another file. We just needed to send the request and then read the content of the `ping_result` file.
 <img src="/assets/img/pwning-router-for-fun/image 19.png">
+
 <img src="/assets/img/pwning-router-for-fun/image 20.png">
 
 Finally, we achieved command execution. A cool discovery was that our user “support” had root privileges for the service.
 The issue here was that it was a Blind Authenticated RCE because the output was saved in `/tmp/ping_result`, and we couldn’t read this file outside SSH. The web app didn’t render the command output directly.
 
 <img src="/assets/img/pwning-router-for-fun/image 21.png">
+
 <img src="/assets/img/pwning-router-for-fun/image 22.png">
 
 But this wasn’t a dead end for us! Here’s what we discovered:
