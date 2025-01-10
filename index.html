@@ -75,6 +75,18 @@ title: Home
 
     {% for post in posts limit: 4 %}
      {% assign author = site.members | where: "nickname", post.author_nickname | first  %}
+     {% assign author_url = author.url %}
+     {% assign author_name = author.name %}
+     {% assign author_nickname = author.nickname %}
+     {% assign author_avatar = author.avatar %}
+
+
+     {% unless author %}
+       {% assign author_url = "" %}
+       {% assign author_avatar = "/assets/img/avatar.png" %}
+       {% assign author_name = post.author %}
+       {% assign author_nickname = post.author_nickname %}
+     {% endunless %}
 
       <li class="post-item {% if post.tags contains 'announcement' %}announcement{% endif %}" onclick="openUrl('{{ post.url }}')">
         <ul class="post-tags">
@@ -96,7 +108,7 @@ title: Home
         </div>
 
         <div class="post-info-footer">
-          <span class="post-date"><img src="{{ author.avatar }}" alt="" class="author-avatar"><a href="{{ author.url }}" class="raw-link author-nick-url">{{ author.nickname | capitalize }}</a> / {{ post.date | date_to_string }}</span>
+          <span class="post-date"><img src="{{ author_avatar }}" alt="" class="author-avatar"><a href="{{ author_url }}" class="raw-link author-nick-url">{{ author_nickname | capitalize }}</a> / {{ post.date | date_to_string }}</span>
           <a href="{{ post.url }}" class="raw-link post-link rounded-lg">{{ i18n.tr[page.lang].read_more | default: "???" }}</a>
         </div>
       </li>
