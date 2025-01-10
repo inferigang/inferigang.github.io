@@ -131,7 +131,9 @@ body {
 
 .container, .site-navbar, .site-footer-nav {
   margin: 0 auto;
-  width: min($container-max-width, $container-width);
+// $container-max-width: 1280px;
+// $container-width: 90%;
+  width: min(1280px, 90%);
 }
 
 .site-footer {
