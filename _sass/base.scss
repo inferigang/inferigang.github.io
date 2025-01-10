@@ -244,6 +244,9 @@ body {
 }
 
 .site-footer-nav {
+
+  margin-top: 2rem;
+
   @include flex(row, $align-items: start, $gap: 4rem);
 
   .footer-nav-site-brand {

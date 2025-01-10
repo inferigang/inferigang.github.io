@@ -4,7 +4,7 @@ lang: en
 title: Discovering a 0-day Authenticated RCE on my router
 description: "What do an H2HC talk and someone with curiosity have in common? A router to hack."
 tags: [research, web exploitation, reverse engineering, exploit]
-banner: hello-world.png
+banner: discovering0day.png
 author: Daniel Moura
 author_nickname: oppsec
 ---
