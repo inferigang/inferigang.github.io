@@ -1,4 +1,5 @@
 ---
+layout: project
 permalink: /projeto/Blobber
 lang: pt
 name: Blobber

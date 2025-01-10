@@ -1,4 +1,5 @@
 ---
+layout: project
 permalink: /project/demonized-shell
 lang: en
 name: D3m0n1z3dShell
