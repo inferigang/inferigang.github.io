@@ -5,8 +5,8 @@ tr:
 
   en:
     # Site settings
-    "site_title": inferigang
-    "site_description": The inferigang project is made up of computer science and information security enthusiasts, mainly focused on sharing information and knowledge around the world.
+    "site_title": inferi.club
+    "site_description": The inferi.club project is made up of computer science and information security enthusiasts, mainly focused on sharing information and knowledge around the world.
     "site_powered_by": Powered by
     "site_all_rights_reserved": All rights reserved
     "not_found": Ooops... <br> 404 Page not found
@@ -35,7 +35,7 @@ tr:
     "author_open_to_work": Open to work
     "site_welcome": Welcome!
     "site_intro": >
-      The inferigang project is made up of computer science and information security enthusiasts, mainly focused on sharing information and knowledge around the world. Our members share similar ideals such as the right to free knowledge, individual liberty and privacy. With the aim of highlighting these issues, we decided to start the blog to share ideas and knowledge.
+      The inferi.club project is made up of computer science and information security enthusiasts, mainly focused on sharing information and knowledge around the world. Our members share similar ideals such as the right to free knowledge, individual liberty and privacy. With the aim of highlighting these issues, we decided to start the blog to share ideas and knowledge.
     "author_read_more": If you want to know more, feel free to read
 
     # Projects labels1
@@ -63,8 +63,8 @@ tr:
 
   pt:
     # Site settings
-    "site_title": inferigang
-    "site_description": InferiGang é um projeto feito de entusiastas da segurança da informação e ciência da computação, focados principalmente no compartilhamento de informações no mundo.
+    "site_title": inferi.club
+    "site_description": inferi.club é um projeto feito de entusiastas da segurança da informação e ciência da computação, focados principalmente no compartilhamento de informações no mundo.
     "site_powered_by": Criado com
     "site_all_rights_reserved": Todos os direitos reservados
     "not_found": Ooops... <br> 404 Página não encontrada
