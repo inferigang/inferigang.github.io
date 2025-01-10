@@ -64,7 +64,7 @@ lang: pt
         </div>
 
         <div class="post-info-footer">
-          <span class="post-date"><img src="{{ author_avatar }}" alt="" class="author-avatar"><a href="{{ author_url }}" class="raw-link author-nick-url">{{ author_nickname | capitalize }}</a> / {{ post.date | date_to_string }}</span>
+          <span class="post-date"><img src="{{ author_avatar }}" alt="" class="author-avatar"><a href="{{ author_url }}" class="raw-link author-nick-url">{{ author_nickname  }}</a> / {{ post.date | date_to_string }}</span>
           <a href="{{ post.url }}" class="raw-link post-link rounded-lg">{{ i18n.tr[page.lang].read_more | default: "???" }}</a>
         </div>
       </li>

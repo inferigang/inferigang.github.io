@@ -11,7 +11,7 @@ theme_style:
 
 permalink: pretty
 
-paginate: 4
+paginate: 20
 paginate_path: "/blog/:num"
 
 collections:

@@ -2,8 +2,8 @@
 layout: post
 lang: en
 title: Discovering a 0-day Authenticated RCE on my router
-description: "What do an H2HC talk and someone with curiosity have in common? The desire to hack something randomly."
-tags: [research, web, reverse engineering, exploit]
+description: "What do an H2HC talk and someone with curiosity have in common? A router to hack."
+tags: [research, web exploitation, reverse engineering, exploit]
 banner: hello-world.png
 author: Daniel Moura
 author_nickname: oppsec
@@ -40,21 +40,21 @@ After a bit of research, I discovered that you could pass a direct command after
 
 <img src="/assets/img/pwning-router-for-fun/image 2.png">
 
-Using the `netstat` command, I checked all running ports and services.
+Using the `netstat` command, I checked all running ports and services. The idea here is to find some binary or service we can exploit to discover a vulnerability, but we don't investigate it too deeply and move on to other enumerations.
 
 <img src="/assets/img/pwning-router-for-fun/image 3.png">
 
-Through the `uname -a` command, I identified the version of the running Linux system.
-```json
+Through the `uname -a` command, I identified the version of the running Linux system. As you can see, it’s a fairly up-to-date kernel, and the environment is somewhat limited, so we also chose not to delve too deeply into its exploitation because, above all, our user is already part of the root group.
+
+```
 Linux (none) 4.4.115 #1 SMP Fri Jul 5 16:58:21 CST 2024 armv7l GNU/Linux
 ```
 
-Using `ps w`, I also found a bunch of interesting information.
+Using `ps w`, I also found a bunch of interesting information. There are several processes using some config files, including some XMLs that contain virtually all the router's configurations, but we also didn't find anything of significant relevance.
 
 <img src="/assets/img/pwning-router-for-fun/image 4.png">
 
 After experimenting with the router, I discovered some issues:
-
 - My friends and I tried different methods to get a reverse shell, but without success.
 - Some common binaries, like `ls`, didn’t work.
 - The entire router was running on a read-only system, so we couldn’t create a web shell in the web app’s directory.
@@ -63,27 +63,30 @@ Not having `ls` wasn’t a problem because we still had the `find` binary. For e
 
 <img src="/assets/img/pwning-router-for-fun/image 5.png">
 
-When I listed the files in the `/tmp` directory, I found a file called “dump.txt” that caught my attention. Reading this file, I discovered it stored network passwords in plaintext, as shown below:
+When I listed the files in the `/tmp` directory, I found a file called `dump.txt` that caught my attention. Reading this file, I discovered it stored network passwords in plaintext, along with other network configurations, which is indeed quite useful if you want to access the Wi-Fi network without changing it, which I think is the best option. The contents of the file were something like this:
 
 <img src="/assets/img/pwning-router-for-fun/image 6.png">
 
 <img src="/assets/img/pwning-router-for-fun/image 7.png">
 
-OK, that’s not a problem… I think? xD. Let’s keep going and focus on the main goal…
+Ok, I don't think this is the biggest problem we have xD, but it's still funny to see the level of security here. Let's continue...
 
 <br>
 
 ### Escalating from cmdsh
 Analyzing the processes, I discovered that the initial shell we got when accessing via SSH was called “cmdsh” and appeared to be a unique binary used to manage the SSH service. I copied the “cmdsh” binary to my local machine and opened it in Binary Ninja to understand what was happening in the background.
+
 <img src="/assets/img/pwning-router-for-fun/image 8.png">
 
 We can see that the binary looks for two variables called “LOGNAME” and “LOGFROM.” Digging further into the code, we identified the expected values for these variables
+
 <img src="/assets/img/pwning-router-for-fun/image 9.png">
 
 The most interesting part of this code, in my opinion, is the lines:
 - `current_hidden` and `current_permission`
 
 Why is this interesting? Because we can see the difference in permissions available when logged in with an “admin” or “telefonica” profile. So, before running the command `/bin/cmdsh`, we specify the values `LOGNAME=telefonica`, for example, and now the commands become available to us. =)
+
 <img src="/assets/img/pwning-router-for-fun/image 10.png">
 
 <br>
@@ -94,6 +97,8 @@ I wasn’t successful with `cURL`, `wget`, or `SCP`. So, I decided to create a t
 <img src="/assets/img/pwning-router-for-fun/image 11.png">
 
 <img src="/assets/img/pwning-router-for-fun/image 12.png">
+
+In the end, we have a "valid" code that we can open in VSCode to better understand the application's structure, but not everything is as smooth as we imagined. This is an issue I didn't consider at the time I was exporting it to VSCode.
 
 <img src="/assets/img/pwning-router-for-fun/image 13.png">
 
@@ -115,21 +120,23 @@ Looking at the final lines of the code, where the `nslookup` binary runs, we not
 
 Returning to the web app, we kept trying to execute commands without immediate success. After a break, we discovered that the `&` character wasn’t blocked. For now, we could encode the `&` character with URL encoding and attempt to execute commands like this:
 
-```json
+```
 127.0.0.1%26%26id
 ```
 
 <img src="/assets/img/pwning-router-for-fun/image 18.png">
 
 We received a blank response because the output was rendered in another file. We just needed to send the request and then read the content of the `ping_result` file.
+
 <img src="/assets/img/pwning-router-for-fun/image 19.png">
 
 <img src="/assets/img/pwning-router-for-fun/image 20.png">
 
-Finally, we achieved command execution. A cool discovery was that our user “support” had root privileges for the service.
-The issue here was that it was a Blind Authenticated RCE because the output was saved in `/tmp/ping_result`, and we couldn’t read this file outside SSH. The web app didn’t render the command output directly.
+Finally, we achieved command execution. The issue here was that it was a Blind Authenticated RCE because the output was saved in `/tmp/ping_result`, and we couldn’t read this file outside SSH. The web app didn’t render the command output directly.
 
 <img src="/assets/img/pwning-router-for-fun/image 21.png">
+
+If we look at the output of our command now, we’ll be surprised by something quite unfortunate, but something we managed to solve later, which was rather "funny" given the ideas we came up with during this process.
 
 <img src="/assets/img/pwning-router-for-fun/image 22.png">
 
@@ -142,30 +149,31 @@ To work around this, we needed to concatenate three commands. Why? By using two 
 
 <img src="/assets/img/pwning-router-for-fun/image 23.png">
 
-```json
+```
 127.0.0.1%26%26uname%20-a%26%26nslookup%20127.0.0.1
 ```
+
 <img src="/assets/img/pwning-router-for-fun/image 24.png">
 
 <br>
 
 ### Automating the Process
 
-Looking at the login process, we noticed the parameter `loginPassword` didn’t send the password in plaintext. Instead, it sent an MD5 hash of the password. After logging in, a `COOKIE_SESSION_KEY` was generated.
+Looking at the login process, we noticed the parameter `loginPassword` didn’t send the password in plaintext. Instead, it sent an MD5 hash of the password. After logging in, a `COOKIE_SESSION_KEY` was generated, which indicates that our session is valid and we are authenticated in the environment.
 
 <img src="/assets/img/pwning-router-for-fun/image 25.png">
 
 <img src="/assets/img/pwning-router-for-fun/image 26.png">
 
-Logging in again showed that the `loginPassword` value was different from the first login.
+Logging in again showed that the `loginPassword` value was different from the first login. Apparently, there is a function in the system that ensures the password hash doesn't repeat, which I believe is meant to prevent brute force attacks and similar methods.
 
 <img src="/assets/img/pwning-router-for-fun/image 27.png">
 
-Inspecting the `login.cgi` HTML source code, we found the JavaScript function that generated the MD5 hash.
+Inspecting the `login.cgi` HTML source code, we found the JavaScript function that generated the MD5 hash, the function in question is called "checkLogin," and it seems to mix the SID value, the original password (in plain text), and finally convert everything to MD5.
 
 <img src="/assets/img/pwning-router-for-fun/image 28.png">
 
-Refreshing the page showed that the `sid` value changed each time.
+Refreshing the page showed that the `sid` value changed each time, this indicates that every time we access the login page, the SID will be changed, something like dynamic generation, so it's not possible to simply convert our password to MD5 and send it directly to the login form.
 
 <img src="/assets/img/pwning-router-for-fun/image 29.png">
 
@@ -173,15 +181,13 @@ Our Python script needed to capture the `var sid` value, concatenate it with the
 
 <img src="/assets/img/pwning-router-for-fun/image 30.png">
 
-We executed the script and checked the response:
+This is already enough for us to generate a valid hash when submitting it to the login form after updating the code. We executed the script and checked the response:
 
 <img src="/assets/img/pwning-router-for-fun/image 31.png">
 
-Following the JavaScript code, we mixed the password with the SID and created an MD5 hash from it.
-
 <img src="/assets/img/pwning-router-for-fun/image 32.png">
 
-Now, with a valid `COOKIE_SESSION_KEY`, we could perform authenticated actions on the router. The final step was to replicate the process and integrate it into the script. The result:
+Now, with a valid `COOKIE_SESSION_KEY`, we could perform authenticated actions on the router. The final step was to replicate the process and integrate it into the script.The final result of our script will be an RCE with direct output, which made exploiting the vulnerability ten times better.
 
 <img src="/assets/img/pwning-router-for-fun/image 33.png">
 
@@ -191,14 +197,15 @@ Now, with a valid `COOKIE_SESSION_KEY`, we could perform authenticated actions o
 
 During this process, my friends and I realized that the most ridiculous ideas can work, like concatenating three commands and hoping for the best hahahaha xD. But honestly, it’s interesting how watching an H2HC talk sparked this desire in me to explore something I had such easy access to, and in the end, everything worked out. Obviously, all of this was possible thanks to the help of the other members of Inferi, who were exceptional in helping me brainstorm some ideas.
 
+<br>
 
 It’s funny that I have no experience with reverse engineering, but a little bit of guesswork and determination seems to solve everything. Of course, if I had some experience, it would have helped a lot, but that’s something for the future.
 
+<br>
 
 Thank you for reading this far! I hope you’ve learned something or at least enjoyed the content. Neither the script nor the vulnerability will be made available since this was just field research. But who knows? Maybe this will turn into a CVE in the future, and we’ll change our minds about publishing it.
 
 <br>
 
 ### References
-
 - [https://www.youtube.com/watch?v=4_UI9zBLJp0](https://www.youtube.com/watch?v=4_UI9zBLJp0)
