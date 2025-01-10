@@ -1,10 +1,21 @@
 ---
 layout: default
-title: "404: Page not found"
-permalink: 404.html
+permalink: /404.html
+title: 404
 ---
 
-<div class="page">
-  <h1 class="page-title">404: Page not found</h1>
-  <p class="lead">Sorry, we've misplaced that URL or it's pointing to something that doesn't exist. <a href="{{ site.baseurl }}/">Head back home</a> to try finding it again.</p>
+{%- assign vars = site.data.vars -%}
+{%- assign i18n = site.data.i18n -%}
+
+{%- assign home = vars.navbar.links | where: "label", "Home" | first -%}
+{%- assign home_url = home.url -%}
+
+{%- if go_i18n -%}
+  {% assign home_url = home.i18n.tr[page.lang].url %}
+{%- endif -%}
+
+<div style="text-align: center;">
+  <img src="/assets/img/404.gif" alt="" class="">
+  <h3>{{ i18n.tr[page.lang].not_found | default: '???' }}</h3>
+  <p>{{ i18n.tr[page.lang].not_found_text | default: '???' }} <a href="{{ home_url | relative_url }}" class="raw-link">{{ i18n.tr[page.lang][home.label] }}</a>.</p>
 </div>

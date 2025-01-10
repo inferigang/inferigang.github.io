@@ -2,29 +2,59 @@
 layout: default
 ---
 
-<article class="post">
-  <h1 class="post-title">{{ page.title }}</h1>
-  <p>Written by <a href="{{ page.author_url }}">@{{ page.author }}</a></p>
-  <time datetime="{{ page.date | date_to_xmlschema }}" class="post-date">{{ page.date | date_to_string }}</time>
-  <div>
-    <div id="table-of-contents">
-      {{ content | toc }}
-    </div>
-  </div>
-</article>
+{%- assign vars = site.data.vars -%}
+{%- assign i18n = site.data.i18n -%}
 
-{% if site.related_posts != empty %}
-<aside class="related">
-  <h3>Related posts</h3>
-  <ul class="related-posts">
-    {% for post in site.related_posts limit:3 %}
-      <li>
-        <a href="{{ site.baseurl }}{{ post.url }}">
-          {{ post.title }}
-          <small><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date_to_string }}</time></small>
-        </a>
-      </li>
+{%- if page.lang != site.lang -%}
+  {%- assign go_i18n = true -%}
+{%- endif -%}
+
+<div class="post-block">
+  <section class="overview">
+    <div class="post-info">
+      <h1 class="post-title">{{ page.title }}</h1>
+      <p class="post-description">{{ page.description }}</p>
+
+      <div class="post-info-meta">
+        <span class="post-date rounded-sm">{{ page.date | date_to_string }}</span>
+
+        <ul class="post-tags">
+          {%- assign tags_page = "/tags/" -%}
+
+          {%- if go_i18n -%}
+            {%- assign tags_page = "/" | append: page.lang | append: tags_page -%}
+          {%- endif -%}
+
+          {% for tag in page.tags limit: 5 %}
+            <li class="post-tag-item rounded-sm">
+              <a href="{{ tags_page | append: '#' | append: tag | relative_url }}" class="raw-link post-tag-link">#{{ tag }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="post-content">
+    {{ content }}
+  </section>
+</div>
+<br>
+<br>
+<br>
+
+{% if site.posts.size > 4 %}
+  <h3 class="title-with-lines"><span>{{ i18n.tr[page.lang].keep_reading | default: "???" }}</span></h3>
+
+  <div class="post-explore">
+    {% assign posts = site.posts | sample: 2 %}
+
+
+    {% for post in posts %}
+      <div class="post-example" onclick="redirectTo('{{ post.url }}')">
+        <h3><a href="{{ post.url }}" class="raw-link post-link">{{ post.title }}</a></h3>
+        <p class="post-description">{{ post.description | truncatewords: 28, "..." }}</p>
+      </div>
     {% endfor %}
-  </ul>
-</aside>
+  </div>
 {% endif %}

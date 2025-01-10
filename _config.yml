@@ -1,46 +1,62 @@
-title: InferiGang
-url: https://inferi.zip
-paginate: 1
+url: ""
 baseurl: ""
+lang: en
+
+title: InferiGang
+description: The inferigang project is a group of computer science and information security enthusiasts, mainly focused on sharing information and knowledge.
+languages: [en, pt]
+
+theme_style:
+    default: dark-theme
+
 permalink: pretty
 
-plugins:
-  - jekyll-gist
-  - jekyll-paginate
-  - jekyll-seo-tag
-  - jekyll-toc
-  - jekyll-sitemap
-
-exclude:
-  - .editorconfig
-  - .git
-  - .jekyll-cache
-  - Gemfile
-  - Gemfile.lock
-  - LICENSE.md
-  - README.md
-
-sass:
-  sass_dir: _sass
-  style: :compressed
+paginate: 4
+paginate_path: "/blog/:num"
 
 collections:
   posts:
     output: true
-    permalink: /paper/:title
+    permalink: "/post/:title"
+  projects:
+    output: true
+  poems:
+    output: true
+    permalink: "/poem/:title"
 
-paginate_path: "/page/:num"
+defaults:
+  - scope:
+      path: "_posts/"
+    values:
+      layout: post
 
-author:
-  name: inferigang
-  url: https://twitter.com/inferigang
-  email: underworld.comp@proton.me
+  - scope:
+      path: "_projects/"
+    values:
+      layout: project
 
-version: 3.0.0
+  - scope:
+      path: ""
+    values:
+      layout: page
+      lang: en
 
-nav:
-  - title: Blog
-    url: /archive
+  - scope:
+      path: "pt/"
+    values:
+      layout: page
+      lang: pt
 
-  - title: About
-    url: /about
+plugins:
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-sitemap
+
+markdown:    kramdown
+highlighter: rouge
+
+# Markdown Processors
+kramdown:
+  input: GFM
+  auto_ids: true
+  syntax_highlighter: rouge

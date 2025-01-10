@@ -1,0 +1,45 @@
+---
+title: Projects
+---
+
+{%- assign vars = site.data.vars -%}
+{%- assign i18n = site.data.i18n -%}
+
+{%- if page.lang != site.lang -%}
+  {%- assign go_i18n = true -%}
+{%- endif -%}
+
+<section id="projects">
+  <h1>{{ i18n.tr[page.lang].site_projects | default: '???' }}</h1>
+  <p>{{ i18n.tr[page.lang].site_projects_text | default: "???" }}</p>
+  <br>
+
+  <ul class="projects-list">
+    {%- assign projects = site.projects | where: "lang", page.lang -%}
+    {%- assign count = 2 | minus: projects.size -%}
+
+    {% for project in projects %}
+      <li class="project-item" onclick="openUrl('{{ project.url }}')">
+        <img src="{{ project.banner }}" alt="Project banner" class="project-banner">
+
+        <div class="project-info">
+          <h3 class="project-name">
+            <a href="{{ project.url }}" class="raw-link project-name">{{ project.name }}</a>
+
+            <ul class="project-badges">
+              {% for badge in project.badges limit: 3 %}
+                <li class="project-badge-item"><img src="{{ badge }}" class="project-badge"></li>
+              {% endfor %}
+            </ul>
+          </h3>
+
+          <p class="project-summary">{{ project.summary }}</p>
+        </div>
+      </li>
+    {% endfor %}
+
+    {% for _ in (0..count) %}
+      <li class="no-post-item"><!-- No post item --></li>
+    {% endfor %}
+  </ul>
+</section>

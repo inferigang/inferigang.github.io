@@ -1,63 +1,86 @@
+{%- assign vars = site.data.vars -%}
+{%- assign i18n = site.data.i18n -%}
+{%- assign navigation_page = vars.navbar.links | concat: vars.footer_nav.links | where: "label", page.title | first -%}
+
+{%- assign page_title = page.title -%}
+{%- assign page_description = page.description -%}
+
+{%- assign site_title = site.title -%}
+{%- assign site_description = site.description -%}
+
+{%- if navigation_page -%}
+  {%- assign page_description = navigation_page.description -%}
+{%- endif -%}
+
+{%- if page.lang != site.lang -%}
+  {%- assign go_i18n = true -%}
+  {%- assign page_title = i18n.tr[page.lang][page.title] | default: page.title -%}
+  {%- assign site_title = i18n.tr[page.lang].site_title | default: site.title -%}
+  {%- assign site_description = i18n.tr[page.lang].site_description | default: "???" -%}
+
+  {%- if navigation_page -%}
+    {%- assign page_description = navigation_page.i18n[page.lang].description | default: "???" -%}
+  {%- endif -%}
+{%- endif -%}
+
 <!DOCTYPE html>
-<html lang="en" data-theme="dark-poole">
-  {% include head.html %}
+<html lang="{{ page.lang }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <body>
-    <div class="container content">
-      <header class="masthead">
-        <h3 class="masthead-title">
+  <link rel="canonical" href="{{ page.url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  <link rel="shortcut icon" href="{{ '/favicon.ico' | relative_url }}" type="image/x-icon">
 
-    
-          
-            
-    
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.5/js.cookie.min.js" integrity="sha512-nlp9/l96/EpjYBx7EP7pGASVXNe80hGhYAUrjeXnu/fyF5Py0/RXav4BBNs7n5Hx1WFhOEOWSAVjGeC3oKxDVQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
 
-          
-          Expand Down
-    
-    
-  
-          <a href="{{ site.baseurl }}/" title="Home">{{ site.title }}</a>
-          <nav class="nav">
-            {% for nav in site.nav %}
-            <small><a href="{{ nav.url }}">{{ nav.title }}</a></small>
-            {% endfor %}
-          </nav>
-        </h3>
-      </header>
-      <main>
-        {{ content }}
-      </main>
-      <footer class="footer">
-        <small>
-          Follow us on <a href="//twitter.com/inferigang">Twitter</a>
-        </small>
-      </footer>
-    </div>
-    {% if site.ga_analytics %}
-    <script>
-      (function (i, s, o, g, r, a, m) {
-        i["GoogleAnalyticsObject"] = r;
-        (i[r] =
-          i[r] ||
-          function () {
-            (i[r].q = i[r].q || []).push(arguments);
-          }),
-          (i[r].l = 1 * new Date());
-        (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m);
-      })(
-        window,
-        document,
-        "script",
-        "https://www.google-analytics.com/analytics.js",
-        "ga"
-      );
-      ga("create", "{{ site.ga_analytics }}", "auto");
-      ga("send", "pageview");
-    </script>
-    {% endif %}
-  </body>
+  <meta property="og:title" content="{{ page_title }}">
+  <meta property="og:locale" content="{{ page.lang }}">
+  <meta property="og:description" content="{{ page_description }}">
+  <meta property="og:url" content="{{ page.url }}">
+  <meta property="og:site_name" content="{{ site_title }}">
+  <meta property="og:type" content="website">
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="{{ page_title }}">
+
+  {% if page.banner %}
+    <meta property="og:image" content="{{ page.banner }}">
+    <meta property="twitter:image" content="{{ page.banner }}">
+  {% endif %}
+
+  <title>{% if page_title %}{{ page_title }} - {% endif %}{{ site_title }}</title>
+  <meta name="description" content="{{ site_description }}">
+
+</head>
+<body class="{{ site.theme_style.default }}">
+  <div class="site">
+    <header class="site-header">
+      {% include navbar.html %}
+    </header>
+
+    <main class="container">
+      {{ content }}
+    </main>
+
+    <footer class="site-footer">
+      {% include footer_nav.html %}
+    </footer>
+  </div>
+
+  <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+
+    mermaid.initialize({
+      securityLevel: 'loose',
+      theme: 'dark'
+    });
+  </script>
+</body>
 </html>

@@ -1,0 +1,84 @@
+author:
+  avatar_url: /assets/img/avatar.png
+  name: inferigang
+  username: inferigang
+  description: >
+    The inferigang project is made up of computer science and information security enthusiasts, mainly focused on sharing information and knowledge around the world. Our members share similar ideals such as the right to free knowledge, individual liberty and privacy. With the aim of highlighting these issues, we decided to start the blog to share ideas and knowledge.
+  links:
+    - label: Discord
+      url: https://discord.gg/VDFRWxyq5q
+      icon: fa-brands fa-discord
+
+    - label: GitHub
+      url: https://github.com/inferigang
+      icon: fa-brands fa-github
+
+    - label: Twitter/X
+      url: https://x.com/inferigang
+      icon: fa-brands fa-x-twitter
+
+navbar:
+  title: true
+  labels: true
+  icons: true
+  links:
+    - label: Home
+      url: /
+      description:
+      icon: fa-solid fa-house
+      i18n:
+        pt:
+          url: /
+          description: Início
+
+    - label: Blog
+      url: /blog/
+      description: Articles and posts on topics about computer science and information security
+      icon: fa-solid fa-newspaper
+      i18n:
+        pt:
+          url: /blog/
+          description: Articles and Publications
+
+    - label: Projects
+      url: /projects
+      description: Projects made by our members
+      icon: fa-solid fa-briefcase
+      i18n:
+        pt:
+          url: /projetos/
+          description: Conheça os projetos dos nossos membros
+
+    - label: About
+      url: /about/
+      description: About us
+      icon: fa-solid fa-user-plus
+      i18n:
+        pt:
+          url: /sobre/
+          description: Sobre nós
+
+footer_nav:
+  title: true
+  description: true
+  labels: true
+  icons: true
+  links:
+    - label: Archive
+      url: /archive/
+      description: Index of all posts
+      icon: fa-solid fa-file
+      i18n:
+        pt:
+          url: /archive/
+          description: Índice de publicações
+
+    - label: Tags
+      url: /tags/
+      description: Explore posts by tags
+      icon: fa-solid fa-tag
+      i18n:
+        pt:
+          url: /tags/
+          description: Explore as publicações por tags
+

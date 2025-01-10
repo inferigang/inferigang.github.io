@@ -1,0 +1,70 @@
+<nav class="site-navbar">
+  <div class="navbar-site-brand">
+    {%- if vars.navbar.title -%}
+      {%- assign home_url = '/' -%}
+
+      {%- if go_i18n -%}
+        {%- assign home_url = home_url | append: page.lang -%}
+      {%- endif -%}
+
+      <h3 class="site-title">
+        <a href="{{ home_url | relative_url }}" class="raw-link">{{ site_title }}</a>
+      </h3>
+    {%- endif -%}
+  </div>
+
+  <div class="navbar-content">
+    <ul id="navbarLinks" class="navbar-links">
+      {% for link in vars.navbar.links %}
+        {%- assign link_url = link.url -%}
+        {%- assign link_label = link.label -%}
+
+        {%- if go_i18n -%}
+          {%- assign link_url = '/' | append: page.lang | append: link.i18n[page.lang].url | default: '#???' -%}
+          {%- assign link_label = i18n.tr[page.lang][link.label] | default: '???' -%}
+        {%- endif -%}
+
+        <li class="navbar-link-item">
+          <a href="{{ link_url }}" class="raw-link navbar-link {% if page.url == link_url %}active{% endif %}">
+            {%- if vars.navbar.icons -%}<i class="{{ link.icon }}"></i>{% endif %}
+            {% if vars.navbar.labels %}{{ link_label }}{%- endif -%}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="navbar-buttons">
+    <div class="change-language">
+      <div id="changeLanguageBtn">
+        <img src="{{ '/assets/img/flag-' | append: page.lang | append: '.svg' }}" alt="{{ page.lang }}" class="language-flag">
+        <i id="dropdownBtnIcon" class="fa-solid fa-angle-down"></i>
+      </div>
+
+      <ul class="languages-links">
+        {% for lang in site.languages %}
+          {%- assign lang_url = '/' -%}
+
+          {%- if lang != site.lang -%}
+            {%- assign lang_url = '/' | append: lang -%}
+          {%- endif -%}
+
+          <li class="language-link-item">
+            <a href="{{ lang_url | relative_url }}" class="raw-link language-link {% if lang == page.lang %}active{% endif %}">
+              <img src="{{ '/assets/img/flag-' | append: lang | append: '.svg' }}" alt="{{ lang | upcase }}" class="language-flag">
+              {{ i18n.tr.generic[lang] }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="change-theme">
+      <i id="toggleThemeBtnIcon" class="fa-solid {% if site.theme_style.default == 'dark-theme' %}fa-sun{% else %}fa-moon{% endif %}"></i>
+    </div>
+
+    <div class="toggle-mobile-navbar">
+      <i id="toggleMobileNavbarBtnIcon" class="fa-solid fa-bars"></i>
+    </div>
+  </div>
+</nav>

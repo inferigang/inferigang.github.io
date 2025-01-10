@@ -1,0 +1,106 @@
+tr:
+  generic:
+    "en": English
+    "pt": Português
+
+  en:
+    # Site settings
+    "site_title": inferigang
+    "site_description": The inferigang project is made up of computer science and information security enthusiasts, mainly focused on sharing information and knowledge around the world.
+    "site_powered_by": Powered by
+    "site_all_rights_reserved": All rights reserved
+    "not_found": Ooops... <br> 404 Page not found
+    "not_found_text": >
+      The requested URL was not found. <br> It looks like you got lost, try returning to the homepage:
+
+    # Navigation labels
+    "Home": Home
+    "Blog": Blog
+    "Projects": Projects
+    "About": About
+    "Archive": Archive
+    "Tags": Tags
+    "next_page": Next page
+    "previous_page": Previous page
+    "footer_explore": Explore
+    "footer_others": Others
+    "latest_posts": Latest Posts
+    "all_posts": All posts
+    "read_more": Read more
+    "read_in_page": Read in page
+    "keep_reading": Keep reading
+
+    # Home labels
+    "author_connect_on": Connect on
+    "author_open_to_work": Open to work
+    "site_welcome": Welcome to the hell!
+    "site_intro": >
+      The inferigang project is made up of computer science and information security enthusiasts, mainly focused on sharing information and knowledge around the world. Our members share similar ideals such as the right to free knowledge, individual liberty and privacy. With the aim of highlighting these issues, we decided to start the blog to share ideas and knowledge.
+    "author_read_more": If you want to know more, feel free to read
+
+    # Projects labels1
+    "site_projects": My Projects
+    "site_projects_text": "If you want to know more about our members, here are a list of projects made by our members:"
+
+    # About labels
+    "author_reach_me": Reach Us
+    "author_reach_me_text": "You also can reach us in others social networks:"
+
+    # Archive labels
+    "site_archive": Archive
+    "site_archive_text": All site posts
+
+    # Tags labels
+    "site_tags": Tags
+    "site_tags_text": Explore posts by tags
+
+  pt:
+    # Site settings
+    "site_title": inferigang
+    "site_description": InferiGang é um projeto feito de entusiastas da segurança da informação e ciência da computação, focados principalmente no compartilhamento de informações no mundo.
+    "site_powered_by": Criado com
+    "site_all_rights_reserved": Todos os direitos reservados
+    "not_found": Ooops... <br> 404 Página não encontrada
+    "not_found_text": >
+      A página de URL solicitado. <br> Parece que você está um pouco perdido, tente retornar
+      The requested URL was not found. <br> It looks like you got lost, try returning to the homepage:
+
+    # Navigation labels
+    "Home": Início
+    "Blog": Blog
+    "Projects": Projetos
+    "About": Sobre
+    "Archive": Archive
+    "Tags": Tags
+    "next_page": Próximo página
+    "previous_page": Página anterior
+    "footer_explore": Explorar
+    "footer_others": Outros
+    "latest_posts": Publicações Recentes
+    "all_posts": Todos os Posts
+    "read_more": Ler mais
+    "read_in_page": Ler na página
+    "keep_reading": Continue lendo
+
+    # Home labels
+    "author_connect_on": Junte-se à nós
+    "site_welcome": Bem-vindo ao inferno
+    "site_intro": >
+      O projeto inferigang é formado por entusiastas da ciência da computação e da segurança da informação, focados principalmente no compartilhamento de informações e conhecimentos ao redor do mundo. Nossos membros compartilham ideais semelhantes, como o direito ao conhecimento gratuito, à liberdade individual e à privacidade. Com o objetivo de destacar essas questões, decidimos criar o blog para compartilhar ideias e conhecimentos.
+    "author_read_more": Caso queira conhecer mais sobre nós, sinta-se a vontade para ler
+
+    # Projects labels1
+    "site_projects": Projetos
+    "site_projects_text": "Caso queira conhecer mais sobre nós, aqui está uma lista de projetos feitos por nossos membros:"
+
+    # About labels
+    "author_reach_me": Encontre-os
+    "author_reach_me_text": "Você também pode nos encontrar entrar em outros redes:"
+
+    # Archive labels
+    "site_archive": Archive
+    "site_archive_text": Todos os artigos do site
+
+    # Tags labels
+    "site_tags": Tags
+    "site_tags_text": Explorar artigos por tags

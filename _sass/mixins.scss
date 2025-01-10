@@ -1,0 +1,15 @@
+@mixin flex($flex-direction: row, $flex-wrap: wrap, $align-items: center, $gap: 1rem, $justify-content: null, $flex: null) {
+  display: flex;
+  flex-direction: $flex-direction;
+  flex-wrap: $flex-wrap;
+  align-items: $align-items;
+  gap: $gap;
+
+  @if $justify-content {
+    justify-content: $justify-content;
+  }
+
+  @if $flex {
+    flex: $flex;
+  }
+}

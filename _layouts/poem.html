@@ -1,0 +1,20 @@
+---
+layout: default
+---
+
+{%- assign i18n = site.data.i18n -%}
+
+<section class="poem-section">
+  <h2 class="poem-title">{{ page.title }}</h2>
+
+  <div class="poem-block">
+    <i class="fa-solid fa-quote-left poem-quote-mark"></i>
+
+    <blockquote class="poem">
+      {{ content | newline_to_br | strip_newlines | replace: "<br /><p>", "<p>" }}
+    </blockquote>
+  </div>
+
+  <span class="poem-creation-date rounded-lg">{{ page.creation_date | date_to_string }}</span>
+  <span class="poem-author rounded-lg">{{ page.author }}</span>
+</section>

@@ -1,0 +1,103 @@
+main {
+  h1, h2, h3, h4 {
+    color: var(--heading-color);
+    font-weight: 500;
+  }
+
+  h1 {
+    border-bottom: var(--default-border);
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    padding-bottom: .7rem;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+    margin-bottom: .7rem;
+    padding-bottom: .1rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    margin-bottom: .5rem;
+  }
+
+  h4 {
+    font-size: 1rem;
+    margin-bottom: .3rem;
+  }
+}
+
+section {
+  margin-bottom: 2rem;
+}
+
+hr {
+  border: none;
+  border-bottom: 1px solid var(--alt-text-color);
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+  transition: var(--default-transition);
+
+  i {
+    cursor: pointer;
+  }
+
+  &:not(.raw-link) {
+    border-bottom: 1px solid var(--link-color);
+
+    &:hover {
+      background-color: var(--link-color);
+      color: var(--background-color);
+    }
+  }
+
+  &[target="_blank"]:not(.no-symbol):after {
+    content: " 🡕"; // fix later: lazy way, may not work in some devices
+  }
+}
+
+img {
+  max-width: 100%;
+}
+
+.title-with-lines {
+  border-bottom: var(--default-border);
+  line-height: 0.1rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  width: 100%;
+
+  span {
+    background-color: var(--background-color);
+    padding: 0 .5rem;
+  }
+}
+
+.rounded-sm, .rounded-md, .rounded-lg {
+  border-radius: 3rem;
+  border: var(--default-border);
+  color: var(--text-color);
+
+  &:is(a):hover, &:has(a):hover {
+    background-color: var(--accent-bg-color-lighter);
+  }
+}
+
+.rounded-sm {
+  font-size: .9rem;
+  padding: 0 .7rem;
+}
+
+.rounded-md {
+  font-size: .9rem;
+  padding: .15rem .7rem;
+}
+
+.rounded-lg {
+  font-size: 1rem;
+  padding: .3rem 1rem;
+}

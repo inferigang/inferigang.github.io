@@ -1,0 +1,46 @@
+---
+title: Archive
+---
+
+{%- assign vars = site.data.vars -%}
+{%- assign i18n = site.data.i18n -%}
+
+{%- if page.lang != site.lang -%}
+  {%- assign go_i18n = true -%}
+{%- endif -%}
+
+<section id="archive">
+  <h1>{{ i18n.tr[page.lang].site_archive | default: "???" }}</h1>
+  <p>{{ i18n.tr[page.lang].site_archive_text | default: "???" }}</p>
+  <br>
+
+  <ul class="posts-list">
+    {%- assign posts = site.posts | where: "lang", page.lang -%}
+
+    {% for post in posts %}
+      <li class="post-item">
+        <h3 class="post-title"><a href="{{ post.url }}" class="raw-link post-link">{{ post.title }}</a></h3>
+
+        <div class="post-info">
+          <span class="post-date rounded-sm">{{ post.date | date_to_string }}</span>
+
+          <ul class="post-tags">
+            {%- assign tags_page = "/tags/" -%}
+
+            {%- if go_i18n -%}
+              {%- assign tags_page = "/" | append: page.lang | append: tags_page -%}
+            {%- endif -%}
+
+            {% for tag in post.tags limit: 5 %}
+              <li class="post-tag-item rounded-sm">
+                <a href="{{ tags_page | append: '#' | append: tag | realtive_url }}" class="raw-link post-tag-link">#{{ tag }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+
+          <p class="post-description">{{ post.description }}</p>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+</section>

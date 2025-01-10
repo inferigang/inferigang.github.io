@@ -1,0 +1,65 @@
+---
+title: Tags
+---
+
+{%- assign vars = site.data.vars -%}
+{%- assign i18n = site.data.i18n -%}
+
+{%- if page.lang != site.lang -%}
+  {%- assign go_i18n = true -%}
+{%- endif -%}
+
+<section id="tags">
+  <h1>{{ i18n.tr[page.lang].site_tags | default: "???" }}</h1>
+  <p>{{ i18n.tr[page.lang].site_tags_text | default: "???" }}</p>
+  <br>
+
+
+  {%- assign tags_page = "/tags/" -%}
+  {%- assign tags = site.data.tags | sort -%}
+
+  {%- if go_i18n -%}
+    {%- assign tags_page = "/" | append: page.lang | append: tags_page -%}
+  {%- endif -%}
+
+  <ul class="site-tags-list">
+
+    {% for tag in tags %}
+    {%- assign posts = site.posts | where: "lang", page.lang | where_exp: "post", "post.tags contains tag" -%}
+      <li class="tag-block {% if posts.size < 1 %}hidden{% endif %}">
+        <h3 id="{{ tag }}" class="tag-title">{{ tag }}</h3>
+        {{ posts_count }}
+        <ul class="posts-list">
+
+          {% for post in posts %}
+            {% unless post.tags contains tag %}
+              {% continue %}
+            {% endunless %}
+
+            <li class="post-item">
+              <h3 class="post-title"><a href="{{ post.url }}" class="raw-link post-link">{{ post.title }}</a></h3>
+
+              <div class="post-info">
+                <ul class="post-tags">
+                  {%- assign tags_page = "/tags/" -%}
+
+                  {%- if go_i18n -%}
+                    {%- assign tags_page = "/" | append: page.lang | append: tags_page -%}
+                  {%- endif -%}
+
+                  {% for tag in post.tags limit: 5 %}
+                    <li class="post-tag-item rounded-sm">
+                      <a href="{{ tags_page | append: '#' | append: tag | relative_url }}" class="raw-link post-tag-link">#{{ tag }}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+
+                <span class="post-date rounded-sm">{{ post.date | date_to_string }}</span>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      </li>
+    {% endfor %}
+  </ul>
+</section>

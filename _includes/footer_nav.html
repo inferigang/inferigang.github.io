@@ -1,0 +1,74 @@
+<nav class="site-footer-nav">
+  <div class="footer-nav-site-brand">
+    {%- if vars.footer_nav.title -%}
+      <h3 class="site-title">{{ site_title }}</h3>
+    {%- endif -%}
+
+    {%- if vars.footer_nav.description -%}
+      <p class="site-description">{{ site_description }}</p>
+    {%- endif -%}
+
+    <ul class="author-links">
+      {% for link in vars.author.links %}
+        <li class="author-link-item">
+          <a href="{{ link.url }}" class="raw-link author-link">
+            {%- if link.icon -%}
+              <i class="{{ link.icon }}"></i>
+            {%- else -%}
+              {{ link.label }}
+            {%- endif -%}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="footer-nav-blocks">
+    <ul class="footer-nav-links">
+      <p class="footer-nav-title">{{ i18n.tr[page.lang].footer_explore | default: '???' }}</p>
+
+      {% for link in vars.navbar.links %}
+        <li class="footer-nav-item">
+          {%- assign link_url = link.url -%}
+          {%- assign link_label = link.label -%}
+
+          {%- if go_i18n -%}
+            {%- assign link_url = '/' | append: page.lang | append: link.i18n[page.lang].url -%}
+            {%- assign link_label = i18n.tr[page.lang][link.label] | default: '???' -%}
+          {%- endif -%}
+
+          <a href="{{ link_url | relative_url }}" class="raw-link footer-nav-link">
+            {% if vars.footer_nav.icons %}<i class="{{ link.icon }}"></i>{% endif %}
+            {% if vars.footer_nav.labels %}{{ link_label }}{% endif %}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <ul class="footer-nav-links">
+      <p class="footer-nav-title">{{ i18n.tr[page.lang].footer_others | default: '???' }}</p>
+
+      {% for link in vars.footer_nav.links %}
+        <li class="footer-nav-item">
+          {%- assign link_url = link.url -%}
+          {%- assign link_label = link.label -%}
+
+          {%- if go_i18n -%}
+            {%- assign link_url = '/' | append: page.lang | append: link.i18n[page.lang].url -%}
+            {%- assign link_label = i18n.tr[page.lang][link.label] | default: '???' -%}
+          {%- endif -%}
+
+          <a href="{{ link_url | relative_url }}" class="raw-link footer-nav-link">
+            {% if vars.footer_nav.icons %}<i class="{{ link.icon }}"></i>{% endif %}
+            {% if vars.footer_nav.labels %}{{ link_label }}{% endif %}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</nav>
+
+<div class="copyright">
+  <p>{{ i18n.tr[page.lang].site_powered_by }} <a href="https://jekyllrb.com/" target="_blank" rel="noopener noreferrer">Jekyll</a> & <a href="https://astreuw.github.io/project/quick" target="_blank" rel="noopener noreferrer">Quick (modified)</a>.</p>
+  <p>&copy; {{ site.time | date: "%Y" }} {{ vars.author.name }}. {{ i18n.tr[page.lang].site_all_rights_reserved }}.</p>
+</div>

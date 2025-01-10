@@ -1,0 +1,46 @@
+---
+layout: default
+---
+
+<section class="project-overview">
+  <div class="project-info">
+    <h1 class="project-name">
+      {{ page.name }}
+
+      <ul class="project-badges">
+        {% for badge in page.badges %}
+          <li class="project-badge-item">
+            <img src="{{ badge }}" class="project-badge">
+          </li>
+        {% endfor %}
+      </ul>
+    </h1>
+
+    <h3 class="project-summary">{{ page.summary }}</h3>
+    <p class="project-description">{{ page.description }}</p>
+    <br>
+
+    <ul class="project-links">
+      <li class="project-link-item">
+        {% if page.website_url %}
+        <a href="{{ page.website_url }}" target="_blank" rel="noopener noreferrer" class="raw-link rounded-lg"><i class="fa-solid fa-globe"></i> Website</a>
+        {% endif %}
+
+        {% if page.github_url %}
+        <a href="{{ page.github_url }}" target="_blank" rel="noopener noreferrer" class="raw-link rounded-lg"><i class="fa-brands fa-github"></i> GitHub</a>
+        {% endif %}
+
+        {% if page.youtube_url %}
+        <a href="{{ page.youtube_url }}" target="_blank" rel="noopener noreferrer" class="raw-link rounded-lg"><i class="fa-brands fa-youtube"></i> YouTube</a>
+        {% endif %}
+      </li>
+    </ul>
+    <br>
+  </div>
+
+  <img src="{{ page.banner }}" alt="Project banner" class="project-banner">
+</section>
+
+<section class="project-readme">
+  {{ content }}
+</section>
