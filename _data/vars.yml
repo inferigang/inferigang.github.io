@@ -1,5 +1,5 @@
 author:
-  avatar_url: /assets/img/avatar.png
+  avatar_url: https://avatars.githubusercontent.com/u/102886029
   name: inferigang
   username: inferigang
   description: >
@@ -48,6 +48,15 @@ navbar:
         pt:
           url: /projetos/
           description: Conheça os projetos dos nossos membros
+
+    - label: Members
+      url: /members/
+      description: Meet our members
+      icon: fa-solid fa-user
+      i18n:
+        pt:
+          url: /membros/
+          description: Conheça nossos membros
 
     - label: About
       url: /about/

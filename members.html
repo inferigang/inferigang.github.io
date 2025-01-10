@@ -1,0 +1,63 @@
+---
+layout: page
+title: Members
+lang: en
+---
+
+{%- assign vars = site.data.vars -%}
+{%- assign i18n = site.data.i18n -%}
+
+{%- if page.lang != site.lang -%}
+  {%- assign go_i18n = true -%}
+{%- endif -%}
+
+{%- assign member_page = vars.navbar.links | where: "label", "Members" | first -%}
+{%- assign member_page_url = member_page.url -%}
+
+{% if go_i18n %}
+  {% assign member_page_url = member_page.i18n[page.lang].url %}
+{% endif %}
+
+
+<section class="members-section">
+  <h1>{{ i18n.tr[page.lang].our_members | default: "???" }}</h1>
+  <br>
+
+  <ul class="members-list">
+    {% for member in site.members %}
+
+    {% assign member_description = member.description %}
+    {% if go_i18n %}
+    {% assign member_description = member[page.lang].description %}
+    {% endif %}
+
+    <li class="member-item">
+      <img src="{{ member.avatar }}" alt="Member avatar" class="member-avatar">
+      <h3 class="member-name">{{ member.name }} <span class="member-nickname">({{ member.nickname }})</span></h3>
+      <a href="{{ member.url }}" class="raw-link rounded-md member-page-link">{{ i18n.tr[page.lang].view_more }}</a>
+      <p class="member-description">{{ member_description }}</p>
+      <br>
+
+      <ul class="member-links">
+        <li class="member-link-item">
+          {% if member.github_url %}
+            <a href="{{ member.github_url }}" class="raw-link member-link"><i class="fa-brands fa-github"></i></a>
+            {% endif %}
+        </li>
+
+        <li class="member-link-item">
+          {% if member.twitter_url %}
+          <a href="{{ member.twitter_url }}" class="raw-link member-link"><i class="fa-brands fa-x-twitter"></i></a>
+          {% endif %}
+        </li>
+
+        <li class="member-link-item">
+          {% if member.youtube_url %}
+          <a href="{{ member.youtube_url }}" class="raw-link member-link"><i class="fa-brands fa-youtube"></i></a>
+          {% endif %}
+        </li>
+      </ul>
+    </li>
+    {% endfor %}
+  </ul>
+</section>

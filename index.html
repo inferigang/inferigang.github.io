@@ -47,6 +47,15 @@ title: Home
   </div>
 </section>
 
+
+{%- assign member_page = vars.navbar.links | where: "label", "Members" | first -%}
+{%- assign member_page_url = member_page.url -%}
+
+{% if go_i18n %}
+  {% assign member_page_url = member_page.i18n[page.lang].url %}
+{% endif %}
+
+
 <section id="posts">
   <h4 class="title-with-lines"><span>{{ i18n.tr[page.lang].latest_posts | default: "???" }}</span></h4>
 
@@ -65,7 +74,9 @@ title: Home
     {%- endunless -%}
 
     {% for post in posts limit: 4 %}
-      <li class="post-item {% if post.tags contains 'announcement' %}announcement{% endif %}">
+     {% assign author = site.members | where: "nickname", post.author_nickname | first  %}
+
+      <li class="post-item {% if post.tags contains 'announcement' %}announcement{% endif %}" onclick="openUrl('{{ post.url }}')">
         <ul class="post-tags">
           {% for tag in post.tags %}
             <li class="post-tag-item rounded-sm">
@@ -85,7 +96,7 @@ title: Home
         </div>
 
         <div class="post-info-footer">
-          <span class="post-date rounded-lg">{{ post.date | date_to_string }}</span>
+          <span class="post-date"><img src="{{ author.avatar }}" alt="" class="author-avatar"><a href="{{ member_page_url }}{{ author.nickname }}" class="raw-link author-nick-url">{{ author.nickname | capitalize }}</a> / {{ post.date | date_to_string }}</span>
           <a href="{{ post.url }}" class="raw-link post-link rounded-lg">{{ i18n.tr[page.lang].read_more | default: "???" }}</a>
         </div>
       </li>

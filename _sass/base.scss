@@ -298,7 +298,7 @@ body {
 
 .posts-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
   gap: 1rem;
   list-style: none;
 
@@ -354,6 +354,7 @@ body {
     }
 
     &:hover {
+      cursor: pointer;
       background-color: var(--accent-bg-color-darker);
       box-shadow:0px 0px 38px 4px #ffffff10;
       transform: translateY(-.3rem);
@@ -709,3 +710,142 @@ table {
 .post-content {
   line-height: 1.7rem;
 }
+
+.members-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 1rem;
+  list-style: none;
+}
+
+.member-item {
+  @include flex(column, $gap: .5rem);
+  max-width: 24rem;
+}
+
+.member-avatar {
+  max-width: 8rem;
+  border-radius: 100%;
+}
+
+.member-name {
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.member-nickname {
+  font-weight: 300;
+  color: var(--text-color-darker);
+}
+
+
+.member-item .member-description {
+  text-align: center;
+}
+
+.member-links {
+  @include flex(row, $gap: .5rem);
+  list-style: none;
+
+  .member-link {
+    @include flex(row, $align-items: center, $justify-content: center, $gap: .5rem);
+    border-radius: .3rem;
+    border: var(--default-border);
+    color: var(--text-color-darker);
+    min-height: 2rem;
+    min-width: 2rem;
+
+    &:hover {
+      background-color: var(--accent-bg-color-lighter);
+    }
+  }
+}
+
+.member-view {
+  @include flex(column, $align-items: start, $gap: .5rem);
+}
+
+.posts-list-inline {
+  @include flex(column, $align-items: start);
+  list-style: none;
+
+  .spacer {
+    flex: 1;
+    transform: translateY(.77rem);
+
+    &::after {
+      content: '';
+      display: inline-block;
+      width: 100%;
+      height: 4.33\rem;
+      position: absolute;
+      left: 50%;
+      transform:  translateX(-50%);
+      bottom: -3.31rem;
+      background-image: radial-gradient( ellipse, var(--text-color-darker) 1px, var(--text-color-darker) 1px, transparent 1px) ;
+        background-size: .5rem .5rem;
+        background-position: 0px 0;
+      background-repeat: repeat-x;
+    }
+  }
+
+  .post-item {
+    @include flex(row, $gap: .5rem);
+    list-style: none;
+    width: 100%;
+  }
+
+  .post-tags {
+    list-style: none;
+
+    .post-tag-link {
+      color: var(--text-color);
+    }
+  }
+}
+
+.post-tag-item {
+  @include flex(row, $justify-content: center, $align-items: center);
+}
+
+.member-readme {
+  border-top: var(--default-border);
+  margin-top: 1rem;
+  width: 100%;
+  padding: 2rem 0rem;
+}
+
+.member-view {
+  margin-bottom: 1rem;
+}
+
+.post-info-footer {
+
+  .post-meta {
+    @include flex(column, $gap: .5rem);
+  }
+  .post-author {
+    @include flex(row, nowrap, $align-items: center, $justify-content: center);
+
+    .author-avatar {
+      max-width: 1.3rem;
+      border-radius: 100%;
+    }
+  }
+}
+
+.announcement {
+  .post-author a, .author-nick-url {
+    color: transparent;
+  }
+}
+
+
+.post-date {
+  @include flex(row, $gap: .5rem);
+}
+.post-date .author-avatar {
+  max-width: 1.5rem;
+  border-radius: 100%;
+}
+

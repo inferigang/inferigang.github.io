@@ -33,13 +33,13 @@ tr:
     # Home labels
     "author_connect_on": Connect on
     "author_open_to_work": Open to work
-    "site_welcome": Welcome to the hell!
+    "site_welcome": Welcome!
     "site_intro": >
       The inferigang project is made up of computer science and information security enthusiasts, mainly focused on sharing information and knowledge around the world. Our members share similar ideals such as the right to free knowledge, individual liberty and privacy. With the aim of highlighting these issues, we decided to start the blog to share ideas and knowledge.
     "author_read_more": If you want to know more, feel free to read
 
     # Projects labels1
-    "site_projects": My Projects
+    "site_projects": Projects
     "site_projects_text": "If you want to know more about our members, here are a list of projects made by our members:"
 
     # About labels
@@ -53,6 +53,13 @@ tr:
     # Tags labels
     "site_tags": Tags
     "site_tags_text": Explore posts by tags
+
+    # Members labels
+    "view_more": View more
+    "member_posts": Publications
+    "no_posts_found": No posts found
+    "our_members": Our Members
+    "our_members_text": Meet who we are
 
   pt:
     # Site settings
@@ -72,6 +79,7 @@ tr:
     "About": Sobre
     "Archive": Archive
     "Tags": Tags
+    "Members": Members
     "next_page": Próximo página
     "previous_page": Página anterior
     "footer_explore": Explorar
@@ -84,7 +92,7 @@ tr:
 
     # Home labels
     "author_connect_on": Junte-se à nós
-    "site_welcome": Bem-vindo ao inferno
+    "site_welcome": Bem-vindo(a)!
     "site_intro": >
       O projeto inferigang é formado por entusiastas da ciência da computação e da segurança da informação, focados principalmente no compartilhamento de informações e conhecimentos ao redor do mundo. Nossos membros compartilham ideais semelhantes, como o direito ao conhecimento gratuito, à liberdade individual e à privacidade. Com o objetivo de destacar essas questões, decidimos criar o blog para compartilhar ideias e conhecimentos.
     "author_read_more": Caso queira conhecer mais sobre nós, sinta-se a vontade para ler
@@ -104,3 +112,11 @@ tr:
     # Tags labels
     "site_tags": Tags
     "site_tags_text": Explorar artigos por tags
+
+    # Members labels
+    "Members": Membros
+    "view_more": Ver mais
+    "member_posts": Publicações
+    "no_posts_found": Nenhum post escrito foi encontrado
+    "our_members": Nossos membros
+    "our_members_text": Conheça quem somos

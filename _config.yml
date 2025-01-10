@@ -20,9 +20,8 @@ collections:
     permalink: "/post/:title"
   projects:
     output: true
-  poems:
+  members:
     output: true
-    permalink: "/poem/:title"
 
 defaults:
   - scope:
