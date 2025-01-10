@@ -143,7 +143,7 @@ body {
 }
 
 .site-navbar, .navbar-content, .navbar-links {
-  @include mx.flex(row, $flex: 1);
+  @include flex(row, $flex: 1);
 }
 
 .site-navbar {
@@ -177,17 +177,17 @@ body {
   }
 
   .navbar-buttons {
-    @include mx.flex(row, $gap: .5rem);
+    @include flex(row, $gap: .5rem);
 
     .change-language {
-      @include mx.flex(row);
+      @include flex(row);
       cursor: pointer;
       border-radius: .5rem;
       border: var(--default-border);
       padding: 0 .7rem;
 
       #changeLanguageBtn {
-        @include mx.flex(row, nowrap, $gap: .5rem, $justify-content: center);
+        @include flex(row, nowrap, $gap: .5rem, $justify-content: center);
         color: var(--text-color);
         padding: .3rem;
       }
@@ -222,7 +222,7 @@ body {
     }
 
     .change-theme, .toggle-mobile-navbar {
-      @include mx.flex(row);
+      @include flex(row);
       cursor: pointer;
       border-radius: .5rem;
       border: var(--default-border);
@@ -244,7 +244,7 @@ body {
 }
 
 .site-footer-nav {
-  @include mx.flex(row, $align-items: start, $gap: 4rem);
+  @include flex(row, $align-items: start, $gap: 4rem);
 
   .footer-nav-site-brand {
     flex: 1;
@@ -255,11 +255,11 @@ body {
   }
 
   .footer-nav-blocks {
-    @include mx.flex(row, $align-items: start, $gap: 4rem);
+    @include flex(row, $align-items: start, $gap: 4rem);
   }
 
   .footer-nav-links {
-    @include mx.flex(column, $align-items: start, $gap: .3rem);
+    @include flex(column, $align-items: start, $gap: .3rem);
     list-style: none;
 
     .footer-nav-title {
@@ -285,7 +285,7 @@ body {
 }
 
 .site-title, .author-connect-links {
-  @include mx.flex(row, $gap: .5rem);
+  @include flex(row, $gap: .5rem);
 }
 
 .author-connect-links {
@@ -303,7 +303,7 @@ body {
   list-style: none;
 
   .post-item {
-    @include mx.flex(column, $align-items: start, $gap: 0);
+    @include flex(column, $align-items: start, $gap: 0);
     background-color: var(--background-color);
     border-radius: 1rem;
     border: var(--default-border);
@@ -314,7 +314,7 @@ body {
     }
 
     .post-tags {
-      @include mx.flex(row, $gap: .3rem);
+      @include flex(row, $gap: .3rem);
       position: absolute;
       list-style: none;
       max-width: 20rem;
@@ -349,7 +349,7 @@ body {
     }
 
     .post-info-footer {
-      @include mx.flex(row, $justify-content: space-between);
+      @include flex(row, $justify-content: space-between);
       width: 100%;
     }
 
@@ -374,7 +374,7 @@ body {
 }
 
 .posts-buttons {
-  @include mx.flex(row, $gap: .5rem, $justify-content: center);
+  @include flex(row, $gap: .5rem, $justify-content: center);
 }
 
 .projects-list {
@@ -400,7 +400,7 @@ body {
     }
 
     .project-name {
-      @include mx.flex(row, $align-items: center, $gap: .5rem);
+      @include flex(row, $align-items: center, $gap: .5rem);
     }
 
     &:hover {
@@ -412,10 +412,10 @@ body {
 }
 
 .project-overview {
-  @include mx.flex(row, $align-items: start);
+  @include flex(row, $align-items: start);
 
   .project-name {
-    @include mx.flex(row, $align-items: center);
+    @include flex(row, $align-items: center);
   }
 
   .project-links {
@@ -437,13 +437,13 @@ body {
   list-style: none;
 
   .project-badge-item {
-    @include mx.flex(row, $align-items: center);
+    @include flex(row, $align-items: center);
   }
 }
 
 .about-author {
   .author-intro {
-    @include mx.flex(row, nowrap, $align-items: start);
+    @include flex(row, nowrap, $align-items: start);
   }
 
   .author-avatar {
@@ -453,7 +453,7 @@ body {
   }
 
   .author-reach-me {
-    @include mx.flex(row, $gap: .5rem);
+    @include flex(row, $gap: .5rem);
   }
 }
 
@@ -462,11 +462,11 @@ body {
 }
 
 .author-links {
-  @include mx.flex(row, $gap: .5rem);
+  @include flex(row, $gap: .5rem);
   list-style: none;
 
   .author-link {
-    @include mx.flex(row, $align-items: center, $justify-content: center);
+    @include flex(row, $align-items: center, $justify-content: center);
     border-radius: .3rem;
     border: var(--default-border);
     color: var(--text-color-darker);
@@ -481,7 +481,7 @@ body {
 
 #archive, #tags {
   .posts-list {
-    @include mx.flex(column, $align-items: start);
+    @include flex(column, $align-items: start);
     width: 100%;
 
     .post-item {
@@ -495,7 +495,7 @@ body {
       }
 
       .post-info {
-        @include mx.flex(row, $gap: .5rem);
+        @include flex(row, $gap: .5rem);
         padding: 0;
       }
 
@@ -514,12 +514,12 @@ body {
 }
 
 .poems-list {
-  @include mx.flex(column, $align-items: start, $gap: 3rem);
+  @include flex(column, $align-items: start, $gap: 3rem);
   list-style: none;
 }
 
 .poem-block {
-  @include mx.flex(row, nowrap, $align-items: start);
+  @include flex(row, nowrap, $align-items: start);
 
   .poem-quote-mark {
     font-size: 1.3rem;
@@ -595,7 +595,7 @@ body {
 }
 
 .site-tags-list {
-  @include mx.flex(column, $align-items: start);
+  @include flex(column, $align-items: start);
 
   .tag-title::before {
     content: "#";
@@ -629,10 +629,10 @@ body {
 
 .post-block {
   .overview {
-    @include mx.flex(column, $gap: 0);
+    @include flex(column, $gap: 0);
 
     .post-info {
-      @include mx.flex(column, $justify-content: center, $gap: 0);
+      @include flex(column, $justify-content: center, $gap: 0);
       max-width: 48rem;
 
     }
@@ -647,7 +647,7 @@ body {
     }
 
     .post-tags {
-      @include mx.flex(row);
+      @include flex(row);
       list-style: none;
 
       .post-tag-link {
@@ -656,7 +656,7 @@ body {
     }
 
     .post-info-meta {
-      @include mx.flex(row, $gap: .5rem);
+      @include flex(row, $gap: .5rem);
       margin-top: 1rem;
     }
   }
@@ -679,7 +679,7 @@ body {
 }
 
 .post-explore {
-  @include mx.flex(row);
+  @include flex(row);
 
   .post-example {
     border: var(--default-border);
