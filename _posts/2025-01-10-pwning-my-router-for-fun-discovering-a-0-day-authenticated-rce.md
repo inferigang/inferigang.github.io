@@ -1,7 +1,7 @@
 ---
 layout: post
 lang: en
-title: Pwning my router for fun - Discovering a 0-day Authenticated RCE
+title: Discovering a 0-day Authenticated RCE on my router
 description: "What do an H2HC talk and someone with curiosity have in common? The desire to hack something randomly."
 tags: [research, web, reverse engineering, exploit]
 banner: hello-world.png
@@ -9,7 +9,7 @@ author: Daniel Moura
 author_nickname: oppsec
 ---
 
-# Pwning my router for fun - Discovering a 0-day Authenticated RCE
+# Discovering a 0-day Authenticated RCE on my router
 
 ## Summary
 
@@ -20,6 +20,8 @@ author_nickname: oppsec
 5. Automating the Process
 6. Conclusion
 7. References
+
+<br>
 
 ### Introduction
 Everything started when I watched a talk by Maycon Vitali at H2HC titled “Internet of Sh!t - Maycon Vitali - H2HC University 2018,” where he discussed his process of discovering vulnerabilities in a Ubiquiti router. After watching the 30-minute talk, I stopped the video, looked around, and remembered an old router I used to have and still had in my house.
@@ -69,7 +71,7 @@ When I listed the files in the `/tmp` directory, I found a file called “dump.t
 
 OK, that’s not a problem… I think? xD. Let’s keep going and focus on the main goal…
 
----
+<br>
 
 ### Escalating from cmdsh
 Analyzing the processes, I discovered that the initial shell we got when accessing via SSH was called “cmdsh” and appeared to be a unique binary used to manage the SSH service. I copied the “cmdsh” binary to my local machine and opened it in Binary Ninja to understand what was happening in the background.
@@ -84,7 +86,7 @@ The most interesting part of this code, in my opinion, is the lines:
 Why is this interesting? Because we can see the difference in permissions available when logged in with an “admin” or “telefonica” profile. So, before running the command `/bin/cmdsh`, we specify the values `LOGNAME=telefonica`, for example, and now the commands become available to us. =)
 <img src="/assets/img/pwning-router-for-fun/image 10.png">
 
----
+<br>
 
 ### Attacking the Web App
 I wasn’t successful with `cURL`, `wget`, or `SCP`. So, I decided to create a tar file, convert it to base64, and save the output locally. After this, I converted it back into a normal file and successfully retrieved the content. I created the tar file from the directory `/usr/shared/web`. Opening it in VSCode revealed the following: 
@@ -145,7 +147,7 @@ To work around this, we needed to concatenate three commands. Why? By using two 
 ```
 <img src="/assets/img/pwning-router-for-fun/image 24.png">
 
----
+<br>
 
 ### Automating the Process
 
@@ -183,15 +185,19 @@ Now, with a valid `COOKIE_SESSION_KEY`, we could perform authenticated actions o
 
 <img src="/assets/img/pwning-router-for-fun/image 33.png">
 
----
+<br>
 
 ### Conclusion
 
 During this process, my friends and I realized that the most ridiculous ideas can work, like concatenating three commands and hoping for the best hahahaha xD. But honestly, it’s interesting how watching an H2HC talk sparked this desire in me to explore something I had such easy access to, and in the end, everything worked out. Obviously, all of this was possible thanks to the help of the other members of Inferi, who were exceptional in helping me brainstorm some ideas.
 
+
 It’s funny that I have no experience with reverse engineering, but a little bit of guesswork and determination seems to solve everything. Of course, if I had some experience, it would have helped a lot, but that’s something for the future.
 
+
 Thank you for reading this far! I hope you’ve learned something or at least enjoyed the content. Neither the script nor the vulnerability will be made available since this was just field research. But who knows? Maybe this will turn into a CVE in the future, and we’ll change our minds about publishing it.
+
+<br>
 
 ### References
 

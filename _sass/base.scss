@@ -849,8 +849,15 @@ table {
   border-radius: 100%;
 }
 
+p:has(img) {
+  display: flex;
+  flex-direction: column;
+}
 
 p img {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 0.75rem;
+  border: 1px solid #654e52;
+  align-self: center;
 }
