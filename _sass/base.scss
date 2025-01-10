@@ -366,10 +366,13 @@ body {
   }
 
   .post-item:is(.announcement), .post-item:is(.announcement) .post-tag-item, .post-item:is(.announcement) .post-banner {
+    background: -webkit-gradient(linear, left top, right top, from(#6666ffdd), color-stop(#0099ffdd), color-stop(#00ff00dd), color-stop(#ff3399dd), to(#6666ffdd));
+    background: -o-linear-gradient(left, #6666ffdd, #0099ffdd, #00ff00dd, #ff3399dd, #6666ffdd);
     background: linear-gradient(to right, #6666ffdd, #0099ffdd, #00ff00dd, #ff3399dd, #6666ffdd);
     -webkit-background-clip: text;
     background-clip: text;
-    animation: move 11s ease-in-out infinite;
+    -webkit-animation: move 11s ease-in-out infinite;
+            animation: move 11s ease-in-out infinite;
     background-size: 400% 100%;
   }
 }
