@@ -90,7 +90,7 @@ layout: default
 
         <div class="post-info-footer">
           <span class="post-date rounded-lg">{{ post.date | date_to_string }}</span>
-          <a href="{{ post.url }}" class="raw-link rounded-lg">{{ i18n.tr[page.lang].read_more | default: "???" }}</a>
+          <a href="{{ post.url }}" class="raw-link post-link rounded-lg">{{ i18n.tr[page.lang].read_more | default: "???" }}</a>
         </div>
       </li>
     {% endfor %}
