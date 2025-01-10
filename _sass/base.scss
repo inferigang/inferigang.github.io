@@ -47,7 +47,7 @@ $primary-font: "Roboto";
 
   --tags-color: #575757;
   --tags-border: 1px solid #33333375;
-  --tags-hover-bg-color: #1a1a1a;
+  --tags-hover-bg-color: #0b0b0ba6;
 }
 
 .light-theme {
@@ -330,6 +330,7 @@ body {
         }
 
         &:hover {
+          color: var(--text-color);
           background-color: var(--tags-hover-bg-color);
         }
       }

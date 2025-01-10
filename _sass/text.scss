@@ -81,6 +81,7 @@ img {
   border-radius: 3rem;
   border: var(--default-border);
   color: var(--text-color);
+  transition: var(--default-transition);
 
   &:is(a):hover, &:has(a):hover {
     background-color: var(--accent-bg-color-lighter);
