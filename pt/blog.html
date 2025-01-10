@@ -21,7 +21,7 @@ lang: pt
   <h1>{{ i18n.tr[page.lang].all_posts | default: "???" }}</h1>
 
   <ul class="posts-list">
-    {%- assign posts = site.posts | where: "lang", page.lang -%}
+    {%- assign posts = site.posts -%}
     {%- assign tags_page = "/tags/" -%}
 
     {%- if go_i18n -%}
