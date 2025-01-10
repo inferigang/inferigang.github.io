@@ -281,7 +281,7 @@ body {
 .copyright {
   color: var(--text-color-darker);
   margin: 0 auto;
-  width: min($container-max-width, $container-width);
+  width: min(1280px, 90%);
 }
 
 .site-title, .author-connect-links {
@@ -705,8 +705,6 @@ table {
   width: 100%;
   border-collapse: collapse;
 }
-
-
 
 .post-content {
   line-height: 1.7rem;
