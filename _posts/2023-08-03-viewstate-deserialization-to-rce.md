@@ -5,7 +5,6 @@ title: ViewState Deserialization To RCE
 author: "A$PX"
 banner: viewstatedeser.png
 description: "Exploitando VIEWSTATES e conseguindo um RCE OOB"
-author: A$PX
 author_nickname: A$PX
 ---
 
