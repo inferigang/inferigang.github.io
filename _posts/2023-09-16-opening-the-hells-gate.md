@@ -422,43 +422,6 @@ NtProtectVirtualMemory ENDP
 
 Esse método é ultizado na técnica que vamos ver a seguir, onde os SSN’s das syscalls ultilizadas para fazer um process injection por exemplo, são resolvidos em tempo de execução.
 
-## Indirect Syscalls
-
-Indirect Sysscalls são implementadas de forma semelhante as direct syscalls, em que os arquivos assembly são criados de forma manual primeiro. A diferença está na ausência da instrução syscall dentro da função assembly, que, em vez disso, é pulada.
-
-![Untitled](/assets/img/Untitled%204.png)
-
-As funções de assembly para `NtAllocateVirtualMemory` e `NtProtectVirtualMemory` são mostradas abaixo.
-
-```nasm
-NtAllocateVirtualMemory PROC
-    mov r10, rcx
-    mov eax, (ssn do NtAllocateVirtualMemory)
-    jmp (endereço da instrução syscall)
-    ret
-NtAllocateVirtualMemory ENDP
-
-NtProtectVirtualMemory PROC
-    mov r10, rcx
-    mov eax, (ssn of NtProtectVirtualMemory)
-    jmp (endereço da instrução syscall)
-    ret
-NtProtectVirtualMemory ENDP
-```
-
-## As vantagens de se ultilizar indirect syscalls
-
-A vantagem de executar indirect syscall em vez de direct syscalls é que as soluções de segurança procurarão por syscalls sendo chamadas de fora do espaço de endereço da NTDLL e as considerarão suspeitas. Com as indirect syscalls, a instrução `syscall` estará sendo executada a partir do endereço da NTDLL, como deveriam ser as syscalls normais. Portando, as indirect syscalls têm maior probabilidade de passar despercebidas pelas soluções de segurança do que as direct syscalls.
-
-Essa abordagem de indirect syscalls, é abordada em uma outra técnica semelhante ao Hells Gate, que vamos ver, a chamada HellsHall, onde é feito o mesmo processo do HellsGate, mas com o uso de indirect syscalls.
-
-## Unhooking
-
-Unhooking é uma outra abordagem para evitar os hooks, na qual a biblioteca NTDLL com os hooks instalados na memória é substituída por uma versão sem hook. A versão sem hook pode ser obtida em vários lugares. mas uma das abordagens mais comuns é carregá-la diretamente do disco. Ao fazer isso, todos os hooks colocados dentro da NTDLL serão removidos.
-
-![Untitled](/assets/img/Untitled%205.png)
-
----
 
 # Hell’s Gate Na Prática
 
