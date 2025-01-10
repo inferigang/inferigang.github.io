@@ -1,9 +1,27 @@
-@import "mixins" as mx;
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+@mixin flex($flex-direction: row, $flex-wrap: wrap, $align-items: center, $gap: 1rem, $justify-content: null, $flex: null) {
+  display: flex;
+  flex-direction: $flex-direction;
+  flex-wrap: $flex-wrap;
+  align-items: $align-items;
+  gap: $gap;
+
+  @if $justify-content {
+    justify-content: $justify-content;
+  }
+
+  @if $flex {
+    flex: $flex;
+  }
+}
+
 
 $container-max-width: 1280px;
 $container-width: 90%;
 $primary-font: "Roboto";
+
+
 
 :root {
   --default-transition: 150ms ease-in;
