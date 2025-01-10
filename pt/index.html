@@ -26,7 +26,7 @@ lang: pt
       {%- assign author_connect_on = vars.author.links.first -%}
 
       <h2 class="site-title">
-        {{ i18n.tr[page.lang].site_welcome }} {{ page.lang }}
+        {{ i18n.tr[page.lang].site_welcome }}
 
         <ul class="author-connect-links">
           <li class="author-connect-link-item">
@@ -36,7 +36,7 @@ lang: pt
       </h2>
 
       {%- if go_i18n -%}
-        <p>{{ i18n.tr[page.lang].site_intro }} {{ page.lang }}</p>
+        <p>{{ i18n.tr[page.lang].site_intro }}</p>
       {%- else -%}
         <p>{{ vars.author.description }} {{ page.lang }}</p>
       {%- endif -%}
