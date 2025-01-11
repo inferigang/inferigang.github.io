@@ -892,3 +892,7 @@ p img {
 section {
   // animation: 1s fadeInUp; Naah
 }
+
+pre:is(.highlight) {
+  overflow-x: scroll;
+}
