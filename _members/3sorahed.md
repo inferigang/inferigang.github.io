@@ -1,4 +1,5 @@
 ---
+title: sorahed
 layout: member
 permalink: /sorahed/
 

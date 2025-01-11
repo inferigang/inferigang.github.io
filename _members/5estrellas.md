@@ -1,4 +1,5 @@
 ---
+title: estrellas
 layout: member
 permalink: /estrellas/
 

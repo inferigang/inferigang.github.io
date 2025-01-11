@@ -1,4 +1,5 @@
 ---
+title: astreuw
 layout: member
 permalink: /astreuw/
 

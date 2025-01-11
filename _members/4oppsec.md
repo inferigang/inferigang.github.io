@@ -1,4 +1,5 @@
 ---
+title: oppsec
 layout: member
 permalink: /oppsec/
 avatar: https://avatars.githubusercontent.com/u/50470310?v=4

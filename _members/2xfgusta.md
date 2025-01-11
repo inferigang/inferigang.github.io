@@ -1,4 +1,5 @@
 ---
+title: xfgusta
 layout: member
 permalink: /xfgusta/
 

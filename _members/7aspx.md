@@ -1,4 +1,5 @@
 ---
+title: A$PX
 layout: member
 permalink: /aspx/
 

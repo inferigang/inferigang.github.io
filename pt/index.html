@@ -71,7 +71,7 @@ lang: pt
 
 
     {%- unless posts %}
-      {%- assign posts = site.posts | limit: 20 -%}
+      {%- assign posts = site.posts | where: "lang", page.lang | limit: 20 -%}
     {%- endunless -%}
 
     {% for post in posts limit: 20 %}
@@ -90,6 +90,7 @@ lang: pt
      {% endunless %}
 
       <li class="post-item {% if post.tags contains 'announcement' %}announcement{% endif %}" onclick="openUrl('{{ post.url }}')">
+
         <ul class="post-tags">
           {% for tag in post.tags %}
             <li class="post-tag-item rounded-sm">
@@ -103,6 +104,8 @@ lang: pt
         <div class="post-info">
           <h3 class="post-title">
             <a href="{{ post.url }}" class="raw-link post-title-link">{{ post.title }}</a>
+
+
           </h3>
 
           <p class="post-description">{{ post.description }}</p>
