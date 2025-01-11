@@ -17,6 +17,26 @@
 }
 
 
+@keyframes fadeInUp {
+  0% {
+    transform: translateY(15%);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 7;
+  }
+
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+.fadeInUp-animation {
+  animation: 1.5s fadeInUp;
+}
+
 $container-max-width: 1280px;
 $container-width: 90%;
 $primary-font: "Roboto";
@@ -867,4 +887,8 @@ p img {
 
 .language-flag-indicator {
   max-width: 1.3rem;
+}
+
+section {
+  // animation: 1s fadeInUp; Naah
 }
