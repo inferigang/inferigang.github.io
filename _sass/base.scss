@@ -892,3 +892,13 @@ p img {
 pre:is(.highlight) {
   overflow-x: scroll;
 }
+
+.post-content {
+  p {
+    margin-bottom: 1rem;
+  }
+}
+
+pre:is(.highlight) {
+  line-height: 1;
+}

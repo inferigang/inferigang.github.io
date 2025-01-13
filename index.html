@@ -80,6 +80,9 @@ title: Home
      {% assign author_nickname = author.nickname %}
      {% assign author_avatar = author.avatar %}
 
+     {% if post.collabs.size > 0 %}
+      {% assign author_nickname = post.author %}
+     {% endif %}
 
      {% unless author %}
        {% assign author_url = "" %}
