@@ -20,6 +20,7 @@ tr:
     "About": About
     "Archive": Archive
     "Tags": Tags
+    "Wallpapers": Wallpapers
     "next_page": Next page
     "previous_page": Previous page
     "footer_explore": Explore
@@ -79,6 +80,8 @@ tr:
     "About": Sobre
     "Archive": Archive
     "Tags": Tags
+    "Wallpapers": Wallpapers
+
     "Members": Members
     "next_page": Próximo página
     "previous_page": Página anterior

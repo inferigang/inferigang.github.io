@@ -1,0 +1,17 @@
+---
+layout: page
+title: Wallpapers
+description: inferi.club original wallpapers
+---
+
+<section>
+  <ul class="wallpapers-list">
+    {% for wallpaper in site.wallpapers %}
+    <li class="wallpaper-item">
+      <a href="/assets/img/wallpapers/{{ wallpaper.filename }}" class="raw-link wallpaper-link">
+        <img src="/assets/img/wallpapers/{{ wallpaper.filename }}" class="wallpaper-image">
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</section>

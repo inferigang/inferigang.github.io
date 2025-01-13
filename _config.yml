@@ -22,6 +22,9 @@ collections:
     output: true
   members:
     output: true
+  wallpapers:
+    output: true
+
 
 defaults:
   - scope:

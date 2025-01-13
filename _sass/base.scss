@@ -902,3 +902,21 @@ pre:is(.highlight) {
 pre:is(.highlight) {
   line-height: 1;
 }
+
+.wallpapers-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
+  gap: 1rem;
+  list-style: none;
+
+  .wallpaper-item {
+    max-width: 24rem;
+
+    &:hover {
+      cursor: pointer;
+      background-color: var(--accent-bg-color-darker);
+      border: var(--default-border);
+      transform: translateY(-.3rem);
+    }
+  }
+}

@@ -91,3 +91,12 @@ footer_nav:
           url: /tags/
           description: Explore as publicações por tags
 
+    - label: Wallpapers
+      url: /wallpapers/
+      description: Explore our original wallpapers
+      icon: fa-solid fa-image
+      i18n:
+        pt:
+          url: /wallpapers/
+          description: Explore nossos wallpapers originais
+
