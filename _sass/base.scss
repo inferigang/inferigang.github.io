@@ -341,7 +341,7 @@ body {
       position: absolute;
       list-style: none;
       max-width: 20rem;
-      opacity: .5;
+      opacity: .3;
       padding: .5rem;
       transition: var(--default-transition);
 
@@ -385,6 +385,14 @@ body {
 
       .post-tags {
         opacity: 1;
+      }
+
+      .post-tag-item {
+        background-color: var(--tags-hover-bg-color);
+        border: 1px solid var(--text-color-darker);
+        .post-tag-link {
+          color: var(--text-color);
+        }
       }
     }
   }
