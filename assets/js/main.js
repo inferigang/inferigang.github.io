@@ -23,3 +23,9 @@ $(".toggle-mobile-navbar").click(function() {
   $("#navbarLinks").toggleClass("active")
   $("body").toggleClass("no-scroll")
 })
+
+
+$.get("https://inferi.6969.lat/view/{{ page.url | replace: "/post/", "" }}", function(data, status) {
+  alert(data)
+});
+console.log(1)
