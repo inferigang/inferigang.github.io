@@ -1,6 +1,6 @@
 ---
 layout: post
-lang: pt
+lang: en
 title: The Art of Linux Kernel Rootkits
 description: "An advanced and deep introduction about Linux kernel mode rookits, how to detect, what are hooks and how it works."
 tags: [linux, rootkits]
