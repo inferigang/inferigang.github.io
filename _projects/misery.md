@@ -7,13 +7,12 @@ website_url: https://github.com/unkvolism/Misery
 github_url: https://github.com/unkvolism/Misery
 license: MIT
 banner: /assets/img/projects/misery.png
-summary: Misery Loader to bypass modern EDR solutions 
+summary: Misery Loader to bypass modern EDR solutions
 description: >
-  Misery Loader to bypass modern EDR solutions 
+  Misery Loader to bypass modern EDR solutions
 badges:
   - https://img.shields.io/github/stars/unkvolism/Misery
-author:
-  name: sorahed (unkvolism)
-  nickname: unkvolism
-  url: https://github.com/unkvolism
+author: sorahed (unkvolism)
+author_nickname: unkvolism
+author_url: https://github.com/unkvolism
 ---

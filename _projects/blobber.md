@@ -12,8 +12,7 @@ description: >
   Blobber is a tool focused on enumerating files stored in an Azure Blob Storage Service with anonymous access enabled.
 badges:
   - https://img.shields.io/github/stars/oppsec/blobber
-author:
-  name: Daniel Moura (oppsec)
-  nickname: oppsec
-  url: https://github.com/oppsec
+author: Daniel Moura (oppsec)
+author_nickname: oppsec
+author_url: https://github.com/oppsec
 ---

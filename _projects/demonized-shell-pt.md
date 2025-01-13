@@ -12,8 +12,7 @@ description: >
   Demonized Shell é uma ferramenta avançada para persistência no Linux.
 badges:
   - https://img.shields.io/github/stars/MatheuZSecurity/D3m0n1z3dShell
-author:
-  name: Matheus
-  nickname: MatheuZSecurity
-  url: https://github.com/MatheuZSecurity
+author: Matheus
+author_nickname: MatheuZSecurity
+author_url: https://github.com/MatheuZSecurity
 ---
