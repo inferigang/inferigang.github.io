@@ -71,6 +71,18 @@
   <title>{% if page_title %}{{ page_title }} - {% endif %}{{ site_title }}</title>
   <meta name="description" content="{{ site_description }}">
 
+  {% assign u = page.url | relative_url | replace: "/post/", "" %}
+  {% if page.layout == "post" %}
+    <script>
+    $.get("https://inferi.6969.lat/view/{{ u }}", function(data, status) {
+
+      if(parseInt(data.total, 10)) {
+        $("#my-counter").html(data.total);
+      }
+    });
+    console.log(1)
+    </script>
+  {% endif %}
 </head>
 <body class="{{ site.theme_style.default }}">
   <div class="site">
