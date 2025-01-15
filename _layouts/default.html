@@ -77,7 +77,7 @@
     $.get("https://inferi.6969.lat/view/{{ u }}", function(data, status) {
 
       if(parseInt(data.total, 10)) {
-        $("#my-counter").html(data.total);
+        $("#my-counter").html(parseInt(data.total, 10));
       }
     });
     console.log(1)
