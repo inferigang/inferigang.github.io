@@ -24,7 +24,9 @@ collections:
     output: true
   wallpapers:
     output: true
-
+  snippets:
+    output: true
+    permalink: "/snippet/:title"
 
 defaults:
   - scope:

@@ -928,3 +928,38 @@ pre:is(.highlight) {
     }
   }
 }
+
+.snippets-list, .snippet-tags {
+  list-style: none;
+}
+
+.snippets-list {
+  @include flex(column, $align-items: start);
+
+
+  .snippet-item {
+    flex: 1;
+    border: var(--default-border);
+    padding: 1rem;
+    border-radius: 1rem;
+    width: 100%;
+  }
+
+  .snippet-code {
+    border: var(--default-border);
+    border-radius: 1rem;
+    padding: .5rem;
+    width: 100%;
+    display: block;
+  }
+
+  .snippet-tags {
+    margin-top: 1rem;
+    @include flex(row, $gap: .5rem);
+  }
+
+}
+
+.snippet-read-more {
+  
+}

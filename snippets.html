@@ -1,0 +1,35 @@
+---
+layout: page
+title: Snippets
+---
+
+{%- assign vars = site.data.vars -%}
+{%- assign i18n = site.data.i18n -%}
+
+{%- if page.lang != site.lang -%}
+  {%- assign go_i18n = true -%}
+{%- endif -%}
+
+<section>
+  <ul class="snippets-list">
+    {% for snippet in site.snippets %}
+    <li class="snippet-item">
+      <h3 class="snippet-title"><i class="fa-solid fa-angle-right"></i> {{ snippet.title }}</h3>
+      <p class="snippet-description">{{ snippet.description }}</p>
+      <br>
+      <code class="snippet-code">{{ snippet.code | newline_to_br | truncatewords: 20 }}</code>
+
+      <ul class="snippet-tags">
+        {% for tag in snippet.tags %}
+        <li class="snippet-tag-item rounded-sm"><a href="" class="raw-link snippet-tag-link">#{{ tag }}</a></li>
+        {% endfor %}
+      </ul>
+      <br>
+
+      <a href="{{ snippet.url }}" class="raw-link rounded-lg snippet-read-more">{{ i18n.tr[page.lang].read_more | default: "???" }}</a>
+
+      <a href="{{ snippet.url }}" class="raw-link rounded-lg snippet-copy">{{ i18n.tr[page.lang].copy_code | default: "???" }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
