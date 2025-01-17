@@ -24,4 +24,3 @@ $(".toggle-mobile-navbar").click(function() {
   $("body").toggleClass("no-scroll")
 })
 
-

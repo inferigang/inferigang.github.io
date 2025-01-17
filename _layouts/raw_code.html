@@ -1,0 +1,105 @@
+---
+layout: page
+---
+
+{%- assign vars = site.data.vars -%}
+{%- assign i18n = site.data.i18n -%}
+
+{%- if page.lang != site.lang -%}
+  {%- assign go_i18n = true -%}
+{%- endif -%}
+
+
+{% assign author = site.members | where: "nickname", page.author_nickname | first  %}
+
+{% assign author_url = author.url %}
+{% assign author_name = author.name %}
+{% assign author_nickname = author.nickname %}
+{% assign author_avatar = author.avatar %}
+
+{% unless author %}
+  {% assign author_url = page.author_url %}
+  {% assign author_avatar = "/assets/img/avatar.png" %}
+  {% assign author_name = page.author %}
+  {% assign author_nickname = page.author_nickname %}
+{% endunless %}
+
+<h1 class="snippet-title">{{ page.title }}</h1>
+
+<div class="snippet-footer">
+  <div class="snippet-author-info rounded-sm">
+    <img src="{{ author_avatar}}" alt="" class="snippet-author-avatar">
+    <a href="{{ author_url }}" class="raw-link snippet-author-link ">@{{ author_nickname }}</a>
+  </div>
+
+  <span onclick="copyData()" class="raw-link rounded-lg snippet-copy">{{ i18n.tr[page.lang].copy_code | default: "???" }}</span>
+</div>
+
+{% highlight c %}
+{{ page.code }}
+{% endhighlight %}
+
+<noscript id="raw" style="display: none;">
+  {{ page.code }}
+</noscript>
+
+
+<script>
+
+window.Clipboard = (function(window, document, navigator) {
+    var textArea,
+        copy;
+
+    function isOS() {
+        return navigator.userAgent.match(/ipad|iphone/i);
+    }
+
+    function createTextArea(text) {
+        textArea = document.createElement('textArea');
+        textArea.value = text;
+        document.body.appendChild(textArea);
+    }
+
+    function selectText() {
+        var range,
+            selection;
+
+        if (isOS()) {
+            range = document.createRange();
+            range.selectNodeContents(textArea);
+            selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            textArea.setSelectionRange(0, 999999);
+        } else {
+            textArea.select();
+        }
+    }
+
+    function copyToClipboard() {
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+    }
+
+    copy = function(text) {
+        createTextArea(text);
+        selectText();
+        copyToClipboard();
+    };
+
+    return {
+        copy: copy
+    };
+})(window, document, navigator);
+
+
+
+const copyData = function() {
+  raw = document.getElementById("raw").innerHTML
+  Clipboard.copy(raw);
+  Swal.fire({
+    title: "Success!",
+    icon: "success"
+  });
+}
+</script>

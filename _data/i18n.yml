@@ -63,6 +63,8 @@ tr:
     "our_members": Our Members
     "our_members_text": Meet who we are
 
+    "view_code": View code
+    "copy_code": Copy code
   pt:
     # Site settings
     "site_title": inferi.club
@@ -93,6 +95,7 @@ tr:
     "read_more": Ler mais
     "read_in_page": Ler na página
     "keep_reading": Continue lendo
+    "view_code": View code
 
     # Home labels
     "author_connect_on": Junte-se à nós

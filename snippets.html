@@ -15,7 +15,10 @@ title: Snippets
   <input type="text" name="search-snippets" id="searchSnippet" placeholder="Search for snippets">
 
   <ul class="snippets-list" id="snippetsList">
+    {% assign id = 0 %}
+
     {% for snippet in site.snippets %}
+    {% assign id = id | plus: 1 %}
 
     {% assign author = site.members | where: "nickname", snippet.author_nickname | first  %}
 
@@ -34,24 +37,95 @@ title: Snippets
 
     <li class="snippet-item">
       <div class="snippet-info">
-        <h3 class="snippet-title"><i class="fa-solid fa-angle-right"></i> {{ snippet.title }}</h3>
-        <a href="{{ author_url }}" class="raw-link snippet-author-link rounded-md">@{{ author_nickname }}</a>
+        <h3 class="snippet-title"><i class="fa-solid fa-angle-right"></i> <a href="{{ snippet.url }}" class="raw-link snippet-url">{{ snippet.title }}</a></h3>
+        <ul class="snippet-tags">
+          {% for tag in snippet.tags %}
+          <li class="snippet-tag-item rounded-sm"><a href="" class="raw-link snippet-tag-link">#{{ tag }}</a></li>
+          {% endfor %}
+        </ul>
       </div>
-      <p class="snippet-description">{{ snippet.description }}</p>
-      <br>
-      <code class="snippet-code">{{ snippet.code | newline_to_br | truncatewords: 20 }}</code>
 
-      <ul class="snippet-tags">
-        {% for tag in snippet.tags %}
-        <li class="snippet-tag-item rounded-sm"><a href="" class="raw-link snippet-tag-link">#{{ tag }}</a></li>
-        {% endfor %}
-      </ul>
-      <br>
+      {% highlight c %}{{ snippet.code | truncate: 512 }}{% endhighlight %}
 
-      <a href="{{ snippet.url }}" class="raw-link rounded-lg snippet-read-more">{{ i18n.tr[page.lang].read_more | default: "???" }}</a>
+      <div class="snippet-footer">
+        <div class="snippet-author-info rounded-sm">
+          <img src="{{ author_avatar}}" alt="" class="snippet-author-avatar">
+          <a href="{{ author_url }}" class="raw-link snippet-author-link ">@{{ author_nickname }}</a>
+        </div>
 
-      <a href="{{ snippet.url }}" class="raw-link rounded-lg snippet-copy">{{ i18n.tr[page.lang].copy_code | default: "???" }}</a>
+        <a href="{{ snippet.url }}" class="raw-link rounded-lg snippet-read-more">{{ i18n.tr[page.lang].view_code | default: "???" }}</a>
+
+        <span href="{{ snippet.url }}" class="raw-link rounded-lg snippet-copy" onclick="copyData('raw{{ id }}')">{{ i18n.tr[page.lang].copy_code | default: "???" }}</span>
+      </div>
+
+      <noscript id="raw{{ id }}" style="display: none;">
+        {{ snippet.code }}
+      </noscript>
+
+
     </li>
     {% endfor %}
   </ul>
 </section>
+
+<script defer>
+
+window.Clipboard = (function(window, document, navigator) {
+    var textArea,
+        copy;
+
+    function isOS() {
+        return navigator.userAgent.match(/ipad|iphone/i);
+    }
+
+    function createTextArea(text) {
+        textArea = document.createElement('textArea');
+        textArea.value = text;
+        document.body.appendChild(textArea);
+    }
+
+    function selectText() {
+        var range,
+            selection;
+
+        if (isOS()) {
+            range = document.createRange();
+            range.selectNodeContents(textArea);
+            selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            textArea.setSelectionRange(0, 999999);
+        } else {
+            textArea.select();
+        }
+    }
+
+    function copyToClipboard() {
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+    }
+
+    copy = function(text) {
+        createTextArea(text);
+        selectText();
+        copyToClipboard();
+    };
+
+    return {
+        copy: copy
+    };
+})(window, document, navigator);
+
+
+
+const copyData = function(title) {
+  raw = document.getElementById(`raw${title}`).innerHTML
+  Clipboard.copy(raw);
+  Swal.fire({
+    title: "Success!",
+    icon: "success"
+  });
+}
+
+console.log(document.innerHTML)
+</script>

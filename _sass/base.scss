@@ -938,11 +938,18 @@ pre:is(.highlight) {
 
 
   .snippet-item {
+
     flex: 1;
     border: var(--default-border);
     padding: 1rem;
     border-radius: 1rem;
     width: 100%;
+
+    &:hover {
+      background-color: var(--accent-bg-color-darker);
+      transition: var(--default-transition);
+      // transform: translateX(-1rem);
+    }
   }
 
   .snippet-code {
@@ -981,5 +988,44 @@ pre:is(.highlight) {
     border: 1px solid var(--text-color);
 
     outline: none;
+  }
+}
+
+.snippet-url {
+  color: var(--text-color);
+}
+
+.snippet-author-avatar {
+  max-width: 1.3rem;
+  border-radius: 100%;
+}
+
+.snippet-author-info {
+  @include flex(row, $gap: .5rem);
+  padding: .3rem 1rem !important;
+  // display: inline;
+  max-width: 20rem;
+}
+
+.snippet-footer {
+  @include flex(row, $gap: .5rem);
+}
+
+.snippet-item pre {
+  line-height: 1.3;
+}
+
+.snippet-item  figure {
+  border: var(--default-border) !important;
+
+  pre {
+    overflow: hidden !important;
+  }
+}
+
+.snippet-copy {
+  &:hover {
+    background-color: var(--accent-bg-color-lighter) !important;
+    cursor: pointer;
   }
 }
