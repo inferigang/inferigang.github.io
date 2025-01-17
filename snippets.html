@@ -10,11 +10,32 @@ title: Snippets
   {%- assign go_i18n = true -%}
 {%- endif -%}
 
+
+
 <section>
   <ul class="snippets-list">
     {% for snippet in site.snippets %}
+
+    {% assign author = site.members | where: "nickname", snippet.author_nickname | first  %}
+
+    {% assign author_url = author.url %}
+    {% assign author_name = author.name %}
+    {% assign author_nickname = author.nickname %}
+    {% assign author_avatar = author.avatar %}
+
+    {% unless author %}
+      {% assign author_url = snippet.author_url %}
+      {% assign author_avatar = "/assets/img/avatar.png" %}
+      {% assign author_name = snippet.author %}
+      {% assign author_nickname = snippet.author_nickname %}
+    {% endunless %}
+
+
     <li class="snippet-item">
-      <h3 class="snippet-title"><i class="fa-solid fa-angle-right"></i> {{ snippet.title }}</h3>
+      <div class="snippet-info">
+        <h3 class="snippet-title"><i class="fa-solid fa-angle-right"></i> {{ snippet.title }}</h3>
+        <a href="{{ author_url }}" class="raw-link snippet-author-link rounded-md">@{{ author_nickname }}</a>
+      </div>
       <p class="snippet-description">{{ snippet.description }}</p>
       <br>
       <code class="snippet-code">{{ snippet.code | newline_to_br | truncatewords: 20 }}</code>
