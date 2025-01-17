@@ -49,6 +49,15 @@ navbar:
           url: /projetos/
           description: Conheça os projetos dos nossos membros
 
+    - label: Snippets
+      url: /snippets/
+      description: Explore code snippets and hacking tricks
+      icon: fa-solid fa-fire
+      i18n:
+        pt:
+          url: /snippets/
+          description: Explore trechos e truques para hacking
+
     - label: Members
       url: /members/
       description: Meet our members
@@ -100,11 +109,3 @@ footer_nav:
           url: /wallpapers/
           description: Explore nossos wallpapers originais
 
-    # - label: Snippets
-    #   url: /snippets/
-    #   description: Explore code snippets and hacking tricks
-    #   icon: fa-solid fa-fire
-    #   i18n:
-    #     pt:
-    #       url: /snippets/
-    #       description: Explore trechos e truques para hacking
