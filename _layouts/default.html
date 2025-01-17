@@ -39,6 +39,7 @@
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/search.js' | relative_url }}"></script>
 
   {% if page.banner %}
     {% assign page_banner = page.banner %}
@@ -98,6 +99,13 @@
       {% include footer_nav.html %}
     </footer>
   </div>
+  <script>
+    SimpleJekyllSearch({
+      searchInput: document.getElementById('searchSnippet'),
+      resultsContainer: document.getElementById('snippetsList'),
+      json: '/snippets.json',
+    })
+  </script>
 
   <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
   <script type="module">

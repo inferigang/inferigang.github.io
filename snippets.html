@@ -11,9 +11,10 @@ title: Snippets
 {%- endif -%}
 
 
-
 <section>
-  <ul class="snippets-list">
+  <input type="text" name="search-snippets" id="searchSnippet" placeholder="Search for snippets">
+
+  <ul class="snippets-list" id="snippetsList">
     {% for snippet in site.snippets %}
 
     {% assign author = site.members | where: "nickname", snippet.author_nickname | first  %}

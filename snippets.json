@@ -1,0 +1,17 @@
+---
+layout: raw
+---
+
+[
+  {% for snippet in site.snippets %}
+    {
+
+      "title"    : "{{ snippet.title | escape }}",
+      "url"      : "{{ site.baseurl }}{{ snippet.url }}",
+      "category" : "{{ snippet.category }}",
+      "tags"     : "{{ snippet.tags | join: ', ' }}",
+      "date"     : "{{ snippet.date }}"
+
+    } {% unless forloop.last %},{% endunless %}
+  {% endfor %}
+]

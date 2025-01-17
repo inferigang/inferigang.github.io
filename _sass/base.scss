@@ -963,3 +963,23 @@ pre:is(.highlight) {
 .snippet-info {
   margin-bottom: 1rem;
 }
+
+#searchSnippet {
+  padding: .7rem;
+  background-color: var(--background-color);
+  border: var(--default-border);
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+  width: 100%;
+  color: var(--text-color);
+
+  &:active {
+    outline: none;
+  }
+
+  &:focus {
+    border: 1px solid var(--text-color);
+
+    outline: none;
+  }
+}
