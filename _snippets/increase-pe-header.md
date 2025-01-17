@@ -1,7 +1,7 @@
 ---
 layout: raw_code
 lang: en
-title: Increase PE Header
+title: Increase PE's SizeOfImage field
 author: Otávio
 author_url:
 author_nickname: estr3llas
