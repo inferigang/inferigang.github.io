@@ -11,10 +11,10 @@ code: |
       const auto ldr_data = peb->LoaderData;
       const auto& [flink, blink] = ldr_data->InLoadOrderModuleList;
 
-      // Retrieve our executable NTDLL's record
+      // Retrieve the record of our PE from NTDLL's POV
       const auto pe = reinterpret_cast<peb::PLDR_DATA_TABLE_ENTRY>(flink->Flink);
 
-      // Get the SizeOfImage field
+      // Get the PE's SizeOfImage field
       auto pSize = &pe->SizeOfImage;
 
       // Increase it by an arbitrary number
