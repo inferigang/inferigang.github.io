@@ -26,34 +26,6 @@ code: |
       _Out_ PULONG OldProtect
   );
 
-  FORCEINLINE
-  PPEB
-  NtCurrentPeb(
-      VOID
-  )
-  {
-  #if defined(_M_AMD64)
-      return (PPEB)__readgsqword(FIELD_OFFSET(TEB, ProcessEnvironmentBlock));
-  #elif defined(_M_IX86)
-      return (PPEB)__readfsdword(FIELD_OFFSET(TEB, ProcessEnvironmentBlock));
-  #elif defined(_M_ARM)
-      return (PPEB)(((PTEB)(ULONG_PTR)_MoveFromCoprocessor(CP15_TPIDRURW))->ProcessEnvironmentBlock);
-  #elif defined(_M_ARM64)
-      return (PPEB)(((PTEB)__getReg(18))->ProcessEnvironmentBlock);
-  #elif defined(_M_IA64)
-      return *(PPEB*)((size_t)_rdteb() + FIELD_OFFSET(TEB, ProcessEnvironmentBlock));
-  #elif defined(_M_ALPHA)
-      return *(PPEB*)((size_t)_rdteb() + FIELD_OFFSET(TEB, ProcessEnvironmentBlock));
-  #elif defined(_M_MIPS)
-      return *(PPEB*)((*(size_t*)(0x7ffff030)) + FIELD_OFFSET(TEB, ProcessEnvironmentBlock));
-  #elif defined(_M_PPC)
-      return *(PPEB*)(__gregister_get(13) + FIELD_OFFSET(TEB, ProcessEnvironmentBlock));
-  #else
-  #error "Unsupported architecture"
-  #endif
-  }
-
-
   NTSTATUS EraseHeader() {
 
       // Retrieve our module's base address
